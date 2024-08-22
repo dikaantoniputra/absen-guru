@@ -27,13 +27,11 @@ class YayasanController extends Controller
      */
     public function karyawan()
     {
-        // Ambil kategori dari pengguna yang sedang login
-        $kategori = auth()->user()->kategori;
+        
+        $user = User::where('kategori', '!=', 'admin')->get();
 
-        // Ambil user berdasarkan kategori
-        $user = User::where('kategori', $kategori)->get();
+        return view('yayasan.data-karyawan', compact('user'));
 
-        return view('kepala-unit.data-karyawan', compact('user'));
     }
 
     public function masukkaryawan()

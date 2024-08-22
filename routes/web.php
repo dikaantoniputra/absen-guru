@@ -8,6 +8,7 @@ use App\Http\Controllers\AbsenMasukController;
 use App\Http\Controllers\AbsenPulangController;
 use App\Http\Controllers\GuruSekolahController;
 use App\Http\Controllers\KepalaSekolahController;
+use App\Http\Controllers\YayasanController;
 
 /*
 |--------------------------------------------------------------------------
@@ -52,12 +53,8 @@ Route::group(['middleware' => ['auth']], function () {
         Route::get('/', function () {
             return view('page.index');
         })->name('yayasan.dashboard');
-        Route::get('/absen-masuk-karyawan-sekolah', [GuruSekolahController::class, 'absen'])->name('absen.guru');
-        Route::get('/absen-pulang-karyawan-sekolah', [GuruSekolahController::class, 'pulang'])->name('absen.guru.pulang');
-        Route::post('/absenmasukguru', [GuruSekolahController::class, 'store'])->name('absenmasukguru');
-        Route::post('/absenpulangguru', [GuruSekolahController::class, 'absenpulang'])->name('absenpulangguru');
-        Route::get('/karyawan-masuk', [GuruSekolahController::class, 'masukkaryawan'])->name('karyawan.masuk');
-        Route::get('karyawan-pulang', [GuruSekolahController::class, 'pulangkaryawan'])->name('karyawan.pulang');
+        Route::get('laporan-karyawan', [YayasanController::class, 'karyawan'])->name('laporan.karyawan.yayasan');
+       
     });
 
     Route::group(['prefix' => 'kepala-sekolah', 'middleware' => 'role:kepala-sekolah'], function () {

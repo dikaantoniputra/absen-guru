@@ -59,6 +59,57 @@
                     </li>
                 </ul> <!-- end navbar-->
                 @endif
+                @if (auth()->user()->role == 'yayasan')
+                <ul class="navbar-nav">
+                    <li class="nav-item dropdown">
+                        <a class="nav-link arrow-none" href="{{ route('kepala.unit') }}" id="topnav-dashboard" role="button"
+                            aria-haspopup="true" aria-expanded="false">
+                            <i class="mdi mdi-view-dashboard me-1"></i> Dashboard
+                        </a>
+            
+                    </li>
+
+                   
+
+                    <li class="nav-item dropdown">
+                        <a class="nav-link arrow-none" id="topnav-dashboard" role="button"
+                        aria-haspopup="true" aria-expanded="false" href="{{ route('laporan.karyawan.yayasan') }}">
+                            <i class="mdi mdi-calendar-blank-outline"></i>
+                            <span> Data Karyawan Unit </span>
+                        </a>
+                    </li>
+
+                    
+
+                    <li class="nav-item dropdown">
+                        <a class="nav-link dropdown-toggle arrow-none" href="#" id="topnav-layout" role="button"
+                            data-bs-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+                            <i class="mdi mdi-card-bulleted-settings-outline me-1"></i> Absen Harian Masuk<div class="arrow-down"></div>
+                        </a>
+                        <div class="dropdown-menu" aria-labelledby="topnav-layout">
+                            <a href="{{ route('masuk.karyawan') }}" class="dropdown-item">Unit TK</a>
+                            <a href="{{ route('pulang.karyawan') }}" class="dropdown-item">Unit SD</a>
+                            <a href="{{ route('pulang.karyawan') }}" class="dropdown-item">Unit SMP</a>
+                            <a href="{{ route('pulang.karyawan') }}" class="dropdown-item">Unit SMA</a>
+                        </div>
+                    </li>
+                        
+                    <li class="nav-item dropdown">
+                        <a class="nav-link dropdown-toggle arrow-none" href="#" id="topnav-layout" role="button"
+                            data-bs-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+                            <i class="mdi mdi-card-bulleted-settings-outline me-1"></i> Laporan All<div class="arrow-down"></div>
+                        </a>
+                        <div class="dropdown-menu" aria-labelledby="topnav-layout">
+                            <a href="{{ route('masuk.karyawan') }}" class="dropdown-item">Unit TK</a>
+                            <a href="{{ route('pulang.karyawan') }}" class="dropdown-item">Unit SD</a>
+                            <a href="{{ route('pulang.karyawan') }}" class="dropdown-item">Unit SMP</a>
+                            <a href="{{ route('pulang.karyawan') }}" class="dropdown-item">Unit SMA</a>
+                        </div>
+                    </li>
+
+
+                </ul> <!-- end navbar-->
+                @endif
                 @if (auth()->user()->role == 'kepala-sekolah')
                 <ul class="navbar-nav">
                     <li class="nav-item dropdown">
