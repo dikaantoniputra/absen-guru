@@ -19,12 +19,12 @@
         <div class="container">
 
             <div class="row justify-content-center">
-                <div class="col-md-12 col-lg-10 col-xl-8">
+                <div class="col-md-8 col-lg-6 col-xl-4">
                     <div class="text-center">   
-                        {{-- <a href="index.html">
+                        <a href="index.html">
                             <img src="{{ asset('assets/images/logo-pirngadi.png') }}" alt="" height="150" class="mx-auto">
                         </a>
-                        <p class="text-muted mt-2 mb-4">Lakukan Pengisian Foto Dengan Max Ukuran Foto 15mb (jbg/png)</p> --}}
+                        <p class="text-muted mt-2 mb-4">Lakukan Absen 1 Hari 1X Jika ada kendala harap hubungi admin</p>
                         @if ($errors->any())
                         <div class="alert alert-danger">
                             <ul>
