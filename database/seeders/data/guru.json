@@ -1,0 +1,298 @@
+[
+    {
+        "name": "Dra.Sartje Sukristiani",
+        "username": "sartje",
+        "password": "sartje",
+        "kategori": "tk",
+        "role": "kepala-sekolah",
+        "status": "0"
+    },
+    {
+        "name": "Irene Margaretha Bruhns ",
+        "username": "irene",
+        "password": "irene",
+        "kategori": "tk",
+        "role": "guru",
+        "status": "0"
+    },
+    {
+        "name": "Yogi Oktavianus. S.Th.",
+        "username": "yogi",
+        "password": "yogi",
+        "kategori": "tk",
+        "role": "guru",
+        "status": "0"
+    },
+    {
+        "name": "Marcelina Casilda",
+        "username": "casilda",
+        "password": "sisil",
+        "kategori": "tk",
+        "role": "guru",
+        "status": "0"
+    },
+    {
+        "name": "Monica Rombeallo",
+        "username": "monica",
+        "password": "monica",
+        "kategori": "tk",
+        "role": "guru",
+        "status": "0"
+    },
+    {
+        "name": "Rovita Devi Novinanda.M. S.Psi",
+        "username": "rovita",
+        "password": "rovita",
+        "kategori": "sd",
+        "role": "kepala-sekolah",
+        "status": "0"
+    },
+    {
+        "name": "Hermin Yunuastuti. S.Pd",
+        "username": "hermin",
+        "password": "hermin",
+        "kategori": "sd",
+        "role": "guru",
+        "status": "0"
+    },
+    {
+        "name": "Sherly Roosdiana. S.Pd",
+        "username": "sherly",
+        "password": "sherly",
+        "kategori": "sd",
+        "role": "guru",
+        "status": "0"
+    },
+    {
+        "name": "Salsabella Dewanti Hudi",
+        "username": "salsabella",
+        "password": "salsabella",
+        "kategori": "sd",
+        "role": "guru",
+        "status": "0"
+    },
+    {
+        "name": "Rida Gultom.  B.A",
+        "username": "rida",
+        "password": "rida",
+        "kategori": "sd",
+        "role": "guru",
+        "status": "0"
+    },
+    {
+        "name": "Albertus Totok Budianto. S.Pd",
+        "username": "albertus",
+        "password": "albertus",
+        "kategori": "sd",
+        "role": "guru",
+        "status": "0"
+    },
+    {
+        "name": "Retno Widuri Handayani. S.Pd",
+        "username": "retro",
+        "password": "retro",
+        "kategori": "sd",
+        "role": "guru",
+        "status": "0"
+    },
+    {
+        "name": "Dra. Augustina Ludia Pastora",
+        "username": "augustina",
+        "password": "Augustina",
+        "kategori": "sd",
+        "role": "guru",
+        "status": "0"
+    },
+    {
+        "name": "Georgius Fantura. S.Pd",
+        "username": "georgius",
+        "password": "georgius",
+        "kategori": "sd",
+        "role": "guru",
+        "status": "0"
+    },
+    {
+        "name": "I Made Dana.Ba.",
+        "username": "madedana",
+        "password": "madedana",
+        "kategori": "sd",
+        "role": "guru",
+        "status": "0"
+    },
+    {
+        "name": "Yuliana Baba Robu S.Pd",
+        "username": "yuliana",
+        "password": "yuliana",
+        "kategori": "sd",
+        "role": "guru",
+        "status": "0"
+    },
+    {
+        "name": "M. Raflingga Hafids S",
+        "username": "raflingga",
+        "password": "raflingga",
+        "kategori": "sd",
+        "role": "guru",
+        "status": "0"
+    },
+    {
+        "name": "Rosalina",
+        "username": "rosalina",
+        "password": "rosalina",
+        "kategori": "sd",
+        "role": "guru",
+        "status": "0"
+    },
+    {
+        "name": "Mathilda Natalin Lose",
+        "username": "mathilda",
+        "password": "mathilda",
+        "kategori": "sd",
+        "role": "guru",
+        "status": "0"
+    },
+    {
+        "name": "Bambang Hermanto",
+        "username": "bambang",
+        "password": "bambang",
+        "kategori": "sd",
+        "role": "guru",
+        "status": "0"
+    },
+    {
+        "name": "Josef Gerard Laisina, S.Si",
+        "username": "josef",
+        "password": "josef",
+        "kategori": "smp",
+        "role": "kepala-sekolah",
+        "status": "0"
+    },
+    {
+        "name": "Harnap N.S. Sihite, S.Pd",
+        "username": "harnap",
+        "password": "harnap",
+        "kategori": "smp",
+        "role": "guru",
+        "status": "0"
+    },
+    {
+        "name": "Yaconias Uktolseja, S.Pd",
+        "username": "yaconias",
+        "password": "yaconias",
+        "kategori": "smp",
+        "role": "guru",
+        "status": "0"
+    },
+    {
+        "name": "Agustinus Doe Koten, S.Pd",
+        "username": "agustinus",
+        "password": "agustinus",
+        "kategori": "smp",
+        "role": "guru",
+        "status": "0"
+    },
+    {
+        "name": "Sri Handayani, S.Pd",
+        "username": "handayani",
+        "password": "handayani",
+        "kategori": "smp",
+        "role": "guru",
+        "status": "0"
+    },
+    {
+        "name": "Andik Kusuma,S.Th, S.Pd, M.Pd",
+        "username": "andik",
+        "password": "andik",
+        "kategori": "smp",
+        "role": "guru",
+        "status": "0"
+    },
+    {
+        "name": "Gregorius Fantura, S.Pd",
+        "username": "gregorius",
+        "password": "gregorius",
+        "kategori": "smp",
+        "role": "guru",
+        "status": "0"
+    },
+    {
+        "name": "Dian Andriana Martiani Lova Aloysia, SE, S.Pd, M.Pd",
+        "username": "andriana",
+        "password": "andriana",
+        "kategori": "smp",
+        "role": "guru",
+        "status": "0"
+    },
+    {
+        "name": "Herry Wahono, ST",
+        "username": "herry",
+        "password": "herry",
+        "kategori": "smp",
+        "role": "guru",
+        "status": "0"
+    },
+    {
+        "name": "Fredy Yudistira L, S.Kom",
+        "username": "fredy",
+        "password": "fredy",
+        "kategori": "smp",
+        "role": "guru",
+        "status": "0"
+    },
+    {
+        "name": "Anggon Perwito, S.Pd",
+        "username": "anggon",
+        "password": "anggon",
+        "kategori": "smp",
+        "role": "guru",
+        "status": "0"
+    },
+    {
+        "name": "Imam Hariyadi, S.Pd",
+        "username": "imam",
+        "password": "imam",
+        "kategori": "smp",
+        "role": "guru",
+        "status": "0"
+    },
+    {
+        "name": "Dra. Lodya Petronella T.",
+        "username": "lodya",
+        "password": "lodya",
+        "kategori": "smp",
+        "role": "guru",
+        "status": "0"
+    },
+    {
+        "name": "Dian Kurnia Abadi",
+        "username": "dian",
+        "password": "dian",
+        "kategori": "smp",
+        "role": "guru",
+        "status": "0"
+    },
+    {
+        "name": "Sri Sulistiati",
+        "username": "sulistiati",
+        "password": "sulistiati",
+        "kategori": "smp",
+        "role": "guru",
+        "status": "0"
+    },
+    {
+        "name": "Evie Budianti, SIIP",
+        "username": "budianti",
+        "password": "budianti",
+        "kategori": "smp",
+        "role": "guru",
+        "status": "0"
+    },
+    {
+        "name": "Kusnadi",
+        "username": "kusnadi",
+        "password": "kusnadi",
+        "kategori": "smp",
+        "role": "guru",
+        "status": "0"
+    }
+]
