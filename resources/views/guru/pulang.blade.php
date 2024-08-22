@@ -49,7 +49,7 @@
                     @endif
                         <div class="card-body p-4">
                             <div class="d-flex justify-content-between mb-4">
-                                <a href="{{ route('absen.kepsek') }}" class="btn btn-success">Lakukan Absen Datang</a>
+                                <a href="{{ route('absen.guru') }}" class="btn btn-success">Lakukan Absen Datang</a>
                                 <a href="{{ route('kepala.unit') }}" class="btn btn-primary">Menu</a>
                             </div>
                             <div class="text-center mb-1">
