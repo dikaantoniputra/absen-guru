@@ -49,8 +49,8 @@
                     @endif
                         <div class="card-body p-4">
                             <div class="d-flex justify-content-between mb-4">
-                                <a href="{{ route('absen.guru') }}" class="btn btn-success">Lakukan Absen Datang</a>
-                                <a href="{{ route('guru.dashboard') }}" class="btn btn-primary">Menu</a>
+                                <a href="{{ route('absen.kepsek') }}" class="btn btn-success">Lakukan Absen Datang</a>
+                                <a href="{{ route('kepala.unit') }}" class="btn btn-primary">Menu</a>
                             </div>
                             <div class="text-center mb-1">
                                 <h4 class="text-uppercase mt-0 mb-4">Selamat Datang <br/> {{ auth()->user()->name ?? '' }} </h4>
@@ -58,7 +58,7 @@
                                
                             </div>
 
-                            <form method="POST" action="{{ route('absenpulangguru') }}" id="form" enctype="multipart/form-data">
+                            <form method="POST" action="{{ route('absenpulangkepsek') }}" id="form" enctype="multipart/form-data">
                                 @csrf
 
                                 <div class="card-body">
@@ -67,7 +67,7 @@
                                         Masukan Foto Dengan Format jpeg,png,jpg
                                     </p>
         
-                                    <input type="file" data-plugins="dropify"  name="gambar" data-height="400" />
+                                    <input type="file" data-plugins="dropify"  name="gambar" data-height="200" />
 
 
                                 </div> <!-- end card-body-->

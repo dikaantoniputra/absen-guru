@@ -25,42 +25,36 @@ class GuruSekolahController extends Controller
      *
      * @return \Illuminate\Http\Response
      */
-    public function karyawan()
-    {
-        // Ambil kategori dari pengguna yang sedang login
-        $kategori = auth()->user()->kategori;
 
-        // Ambil user berdasarkan kategori
-        $user = User::where('kategori', $kategori)->get();
-
-        return view('guru.data-karyawan', compact('user'));
-    }
-
-    public function masukkaryawan()
-    {
-        // Ambil kategori dari pengguna yang sedang login
-        $kategori = auth()->user()->kategori;
-    
-        // Ambil data absensi berdasarkan kategori pengguna yang sedang login
-        $absenMasuk = AbsenMasuk::whereHas('user', function ($query) use ($kategori) {
-            $query->where('kategori', $kategori);
-        })->get();
-    
-        return view('guru.absen-masuk-guru', compact('absenMasuk'));
-    }
+     public function masukkaryawan()
+     {
+         // Ambil ID pengguna yang sedang login
+         $userId = auth()->user()->id;
+     
+         // Ambil data absensi hanya untuk pengguna yang sedang login
+         // dan urutkan berdasarkan waktu dari yang terbaru
+         $absenMasuk = AbsenMasuk::where('user_id', $userId)
+                                 ->orderBy('created_at', 'desc')
+                                 ->get();
+     
+         return view('guru.absen-masuk-guru', compact('absenMasuk'));
+     }
+     
 
     public function pulangkaryawan()
     {
         // Ambil kategori dari pengguna yang sedang login
-        $kategori = auth()->user()->kategori;
-    
-        // Ambil data absensi berdasarkan kategori pengguna yang sedang login
-        $absenPulang = AbsenPulang::whereHas('user', function ($query) use ($kategori) {
-            $query->where('kategori', $kategori);
-        })->get();
+        $userId = auth()->user()->id;
+     
+        // Ambil data absensi hanya untuk pengguna yang sedang login
+        // dan urutkan berdasarkan waktu dari yang terbaru
+        $absenPulang = AbsenPulang::where('user_id', $userId)
+                                ->orderBy('created_at', 'desc')
+                                ->get();
     
         return view('guru.absen-pulang-guru', compact('absenPulang'));
     }
+    
     
 
 
@@ -85,6 +79,22 @@ class GuruSekolahController extends Controller
         $request->validate(AbsenMasuk::$rules);
     
         try {
+
+            $user = auth()->user();
+
+            // Cek apakah pengguna sudah absen pada hari ini
+            $today = now()->format('Y-m-d');
+            $existingAbsen = AbsenMasuk::where('user_id', $user->id)
+                                ->whereDate('created_at', $today)
+                                ->first();
+    
+            if ($existingAbsen) {
+                // Jika sudah ada absen hari ini, tampilkan pesan kesalahan
+                $request->session()->flash('error', 'Anda sudah absen hari ini. Harap absen hanya satu kali per hari. Jika Harap Hubungi Admin');
+                return redirect()->back()->withInput();
+            }
+
+            
             $article = new AbsenMasuk($request->all());
     
             // Mengambil data pengguna yang sedang login
@@ -119,6 +129,22 @@ class GuruSekolahController extends Controller
         $request->validate(AbsenPulang::$rules);
     
         try {
+
+            $user = auth()->user();
+
+            // Cek apakah pengguna sudah absen pada hari ini
+            $today = now()->format('Y-m-d');
+            $existingAbsen = AbsenPulang::where('user_id', $user->id)
+                                ->whereDate('created_at', $today)
+                                ->first();
+    
+            if ($existingAbsen) {
+                // Jika sudah ada absen hari ini, tampilkan pesan kesalahan
+                $request->session()->flash('error', 'Anda sudah absen hari ini. Harap absen hanya satu kali per hari. Jika Harap Hubungi Admin');
+                return redirect()->back()->withInput();
+            }
+
+            
             $article = new AbsenPulang($request->all());
     
             // Mengambil data pengguna yang sedang login

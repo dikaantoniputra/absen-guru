@@ -44,8 +44,20 @@ Route::group(['middleware' => ['auth']], function () {
         })->name('admin.dashboard');
         Route::resource('user', UserController::class);
         Route::resource('absenmasuk', AbsenMasukController::class);
-    Route::resource('absenpulang', AbsenPulangController::class);
+         Route::resource('absenpulang', AbsenPulangController::class);
        
+    });
+
+    Route::group(['prefix' => 'yayasan', 'middleware' => 'role:yayasan'], function () {
+        Route::get('/', function () {
+            return view('page.index');
+        })->name('yayasan.dashboard');
+        Route::get('/absen-masuk-karyawan-sekolah', [GuruSekolahController::class, 'absen'])->name('absen.guru');
+        Route::get('/absen-pulang-karyawan-sekolah', [GuruSekolahController::class, 'pulang'])->name('absen.guru.pulang');
+        Route::post('/absenmasukguru', [GuruSekolahController::class, 'store'])->name('absenmasukguru');
+        Route::post('/absenpulangguru', [GuruSekolahController::class, 'absenpulang'])->name('absenpulangguru');
+        Route::get('/karyawan-masuk', [GuruSekolahController::class, 'masukkaryawan'])->name('karyawan.masuk');
+        Route::get('karyawan-pulang', [GuruSekolahController::class, 'pulangkaryawan'])->name('karyawan.pulang');
     });
 
     Route::group(['prefix' => 'kepala-sekolah', 'middleware' => 'role:kepala-sekolah'], function () {
@@ -60,18 +72,22 @@ Route::group(['middleware' => ['auth']], function () {
         Route::get('/data-karyawan', [KepalaSekolahController::class, 'karyawan'])->name('data.karyawan.unit');
         Route::get('/data-karyawan-masuk', [KepalaSekolahController::class, 'masukkaryawan'])->name('masuk.karyawan');
         Route::get('/data-karyawan-pulang', [KepalaSekolahController::class, 'pulangkaryawan'])->name('pulang.karyawan');
+
+        Route::get('/data-kepsek-masuk', [KepalaSekolahController::class, 'masukkepsek'])->name('masuk.kepsek');
+        Route::get('/data-kepsek-pulang', [KepalaSekolahController::class, 'pulangkepsek'])->name('pulang.kepsek');
         
     });
 
-    Route::group(['prefix' => 'guru', 'middleware' => 'role:guru'], function () {
+    Route::group(['prefix' => 'karyawan', 'middleware' => 'role:guru'], function () {
         Route::get('/', function () {
             return view('page.index');
         })->name('guru.dashboard');
-        Route::get('/absen-masuk-guru-sekolah', [GuruSekolahController::class, 'absen'])->name('absen.guru');
-        Route::get('/absen-pulang-guru-sekolah', [GuruSekolahController::class, 'pulang'])->name('absen.guru.pulang');
+        Route::get('/absen-masuk-karyawan-sekolah', [GuruSekolahController::class, 'absen'])->name('absen.guru');
+        Route::get('/absen-pulang-karyawan-sekolah', [GuruSekolahController::class, 'pulang'])->name('absen.guru.pulang');
         Route::post('/absenmasukguru', [GuruSekolahController::class, 'store'])->name('absenmasukguru');
         Route::post('/absenpulangguru', [GuruSekolahController::class, 'absenpulang'])->name('absenpulangguru');
-        
+        Route::get('/karyawan-masuk', [GuruSekolahController::class, 'masukkaryawan'])->name('karyawan.masuk');
+        Route::get('karyawan-pulang', [GuruSekolahController::class, 'pulangkaryawan'])->name('karyawan.pulang');
     });
 
 

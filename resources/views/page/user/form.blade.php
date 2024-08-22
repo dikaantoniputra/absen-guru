@@ -55,28 +55,24 @@
                 <div class="col-7">
                     <div class="form-check form-check-inline">
                         <input class="form-check-input" type="radio" name="inlineRadioOptions" id="inlineRadio1"
-                            value="guru" <?php echo isset($user) && $user->role === 'guru' ? 'checked' : ''; ?> onclick="toggleRS()">
+                            value="guru" <?php echo isset($user) && $user->role === 'guru' ? 'checked' : ''; ?> >
                         <label class="form-check-label" for="inlineRadio1">Guru</label>
                     </div>
                     <div class="form-check form-check-inline">
                         <input class="form-check-input" type="radio" name="inlineRadioOptions" id="inlineRadio2"
-                            value="kepala-sekolah" <?php echo isset($user) && $user->role === 'kepala-sekolah' ? 'checked' : ''; ?> onclick="toggleRS()">
+                            value="kepala-sekolah" <?php echo isset($user) && $user->role === 'kepala-sekolah' ? 'checked' : ''; ?> >
                         <label class="form-check-label" for="inlineRadio2">Kepala Sekolah</label>
                     </div>
-                    <div class="form-check form-check-inline">
-                        <input class="form-check-input" type="radio" name="inlineRadioOptions" id="inlineRadio3"
-                            value="staf" <?php echo isset($user) && $user->role === 'staf' ? 'checked' : ''; ?> onclick="toggleDaerah()">
-                        <label class="form-check-label" for="inlineRadio3">Staf</label>
-                    </div>
+                   
                     <div class="form-check form-check-inline">
                         <input class="form-check-input" type="radio" name="inlineRadioOptions" id="inlineRadio4"
-                            value="karyawan" <?php echo isset($user) && $user->role === 'karyawan' ? 'checked' : ''; ?> onclick="toggleDaerah()">
+                            value="karyawan" <?php echo isset($user) && $user->role === 'karyawan' ? 'checked' : ''; ?> >
                         <label class="form-check-label" for="inlineRadio4">Karyawan</label>
                     </div>
                     <div class="form-check form-check-inline">
                         <input class="form-check-input" type="radio" name="inlineRadioOptions" id="inlineRadio5"
-                            value="admin" <?php echo isset($user) && $user->role === 'admin' ? 'checked' : ''; ?> onclick="toggleDaerah()">
-                        <label class="form-check-label" for="inlineRadio5">(Admin Provinsi)</label>
+                            value="yayasan" <?php echo isset($user) && $user->role === 'yayasan' ? 'checked' : ''; ?> >
+                        <label class="form-check-label" for="inlineRadio5">(yayasan)</label>
                     </div>
 
                 </div>

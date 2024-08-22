@@ -8,7 +8,7 @@ use App\Models\AbsenPulang;
 use Illuminate\Http\Request;
 use Illuminate\Routing\Controller;
 
-class KepalaSekolahController extends Controller
+class YayasanController extends Controller
 {
     /**
      * Display a listing of the resource.

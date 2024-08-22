@@ -6,7 +6,7 @@
                 @if (auth()->user()->role == 'admin')
                 <ul class="navbar-nav">
                     <li class="nav-item dropdown">
-                        <a class="nav-link arrow-none" href="{{ url('/') }}" id="topnav-dashboard" role="button"
+                        <a class="nav-link arrow-none" href="{{ route('admin.dashboard') }}" id="topnav-dashboard" role="button"
                             aria-haspopup="true" aria-expanded="false">
                             <i class="mdi mdi-view-dashboard me-1"></i> Dashboard
                         </a>
@@ -62,7 +62,7 @@
                 @if (auth()->user()->role == 'kepala-sekolah')
                 <ul class="navbar-nav">
                     <li class="nav-item dropdown">
-                        <a class="nav-link arrow-none" href="{{ url('/') }}" id="topnav-dashboard" role="button"
+                        <a class="nav-link arrow-none" href="{{ route('kepala.unit') }}" id="topnav-dashboard" role="button"
                             aria-haspopup="true" aria-expanded="false">
                             <i class="mdi mdi-view-dashboard me-1"></i> Dashboard
                         </a>
@@ -72,7 +72,7 @@
                     <li class="nav-item dropdown">
                         <a class="nav-link arrow-none" href="{{ route('absen.kepsek') }}" id="topnav-dashboard" role="button"
                             aria-haspopup="true" aria-expanded="false">
-                            <i class="mdi mdi-view-dashboard me-1"></i> Absen
+                            <i class="mdi mdi-view-dashboard me-1"></i> Lakukan Absen
                         </a>
             
                     </li>
@@ -93,8 +93,8 @@
                             <i class="mdi mdi-card-bulleted-settings-outline me-1"></i> Absen Kepala Sekolah <div class="arrow-down"></div>
                         </a>
                         <div class="dropdown-menu" aria-labelledby="topnav-layout">
-                            <a href="layouts-horizontal.html" class="dropdown-item">Absen Masuk </a>
-                            <a href="index.html" class="dropdown-item">Absen Pulang</a>
+                            <a href="{{ route('masuk.kepsek') }}" class="dropdown-item">Absen Masuk </a>
+                            <a href="{{ route('pulang.kepsek') }}" class="dropdown-item">Absen Pulang</a>
                            
                         </div>
                     </li>
@@ -120,6 +120,44 @@
                     </li>
 
 
+                </ul> <!-- end navbar-->
+                @endif
+                @if (auth()->user()->role == 'guru')
+                <ul class="navbar-nav">
+                    <li class="nav-item dropdown">
+                        <a class="nav-link arrow-none" href="{{ route('guru.dashboard') }}" id="topnav-dashboard" role="button"
+                            aria-haspopup="true" aria-expanded="false">
+                            <i class="mdi mdi-view-dashboard me-1"></i> Dashboard
+                        </a>
+            
+                    </li>
+
+
+                    <li class="nav-item dropdown">
+                        <a class="nav-link arrow-none" id="topnav-dashboard" role="button"
+                        aria-haspopup="true" aria-expanded="false" href="{{ route('karyawan.masuk') }}">
+                            <i class="mdi mdi-calendar-blank-outline"></i>
+                            <span> Absen Masuk </span>
+                        </a>
+                    </li>
+
+                    <li class="nav-item dropdown">
+                        <a class="nav-link arrow-none" id="topnav-dashboard" role="button"
+                        aria-haspopup="true" aria-expanded="false" href="{{ route('karyawan.pulang') }}">
+                            <i class="mdi mdi-calendar-blank-outline"></i>
+                            <span> Absen Pulang </span>
+                        </a>
+                    </li>
+
+                    <li class="nav-item dropdown">
+                        <a class="nav-link arrow-none" id="topnav-dashboard" role="button"
+                        aria-haspopup="true" aria-expanded="false" href="{{ route('absen.guru') }}">
+                            <i class="mdi mdi-calendar-blank-outline"></i>
+                            <span> Lakukan Absen </span>
+                        </a>
+                    </li>
+                        
+                    
                 </ul> <!-- end navbar-->
                 @endif
             </div> <!-- end .collapsed-->
