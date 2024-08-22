@@ -11,6 +11,7 @@
 
     <!-- icons -->
     <link href="{{ asset('') }}assets/css/icons.min.css" rel="stylesheet" type="text/css" />
+    @include('include.head')
 </head>
 
 <body class="loading authentication-bg authentication-bg-pattern">
