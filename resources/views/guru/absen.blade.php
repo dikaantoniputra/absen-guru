@@ -3,6 +3,15 @@
 
 <head>
     @include('include.head')
+    <link href="{{ asset('') }}assets/libs/dropzone/min/dropzone.min.css" rel="stylesheet" type="text/css" />
+    <link href="{{ asset('') }}assets/libs/dropify/css/dropify.min.css" rel="stylesheet" type="text/css" />
+
+    <!-- App css -->
+
+    <link href="{{ asset('') }}assets/css/app.min.css" rel="stylesheet" type="text/css" id="app-style" />
+
+    <!-- icons -->
+    <link href="{{ asset('') }}assets/css/icons.min.css" rel="stylesheet" type="text/css" />
 </head>
 
 <body class="loading authentication-bg authentication-bg-pattern">
