@@ -50,14 +50,20 @@ Route::group(['middleware' => ['auth']], function () {
     });
 
     Route::group(['prefix' => 'yayasan', 'middleware' => 'role:yayasan'], function () {
-        Route::get('/', function () {
-            return view('page.index');
-        })->name('yayasan.dashboard');
+        // Route::get('/', function () {
+        //     return view('page.index');
+        // })->name('yayasan.dashboard');
+
+        Route::get('/', [YayasanController::class, 'index'])->name('yayasan.dashboard');
         Route::get('laporan-karyawan', [YayasanController::class, 'karyawan'])->name('laporan.karyawan.yayasan');
+        Route::get('absen-harian-tk', [YayasanController::class, 'hariantk'])->name('data.tk.harian');
+        Route::get('absen-harian-sd', [YayasanController::class, 'hariansd'])->name('data.sd.harian');
+        Route::get('absen-harian-smp', [YayasanController::class, 'hariansmp'])->name('data.smp.harian');
+        Route::get('absen-harian-sma', [YayasanController::class, 'hariansma'])->name('data.sma.harian');
        
     });
 
-    Route::group(['prefix' => 'kepala-sekolah', 'middleware' => 'role:kepala-sekolah'], function () {
+         Route::group(['prefix' => 'kepala-sekolah', 'middleware' => 'role:kepala-sekolah'], function () {
         Route::get('/', function () {
             return view('page.index');
         })->name('kepala.unit');

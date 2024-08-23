@@ -62,7 +62,7 @@
                 @if (auth()->user()->role == 'yayasan')
                 <ul class="navbar-nav">
                     <li class="nav-item dropdown">
-                        <a class="nav-link arrow-none" href="{{ route('kepala.unit') }}" id="topnav-dashboard" role="button"
+                        <a class="nav-link arrow-none" href="{{ route('yayasan.dashboard') }}" id="topnav-dashboard" role="button"
                             aria-haspopup="true" aria-expanded="false">
                             <i class="mdi mdi-view-dashboard me-1"></i> Dashboard
                         </a>
@@ -87,10 +87,10 @@
                             <i class="mdi mdi-card-bulleted-settings-outline me-1"></i> Absen Harian Masuk<div class="arrow-down"></div>
                         </a>
                         <div class="dropdown-menu" aria-labelledby="topnav-layout">
-                            <a href="{{ route('masuk.karyawan') }}" class="dropdown-item">Unit TK</a>
-                            <a href="{{ route('pulang.karyawan') }}" class="dropdown-item">Unit SD</a>
-                            <a href="{{ route('pulang.karyawan') }}" class="dropdown-item">Unit SMP</a>
-                            <a href="{{ route('pulang.karyawan') }}" class="dropdown-item">Unit SMA</a>
+                            <a href="{{ route('data.tk.harian') }}" class="dropdown-item">Unit TK</a>
+                            <a href="{{ route('data.sd.harian') }}" class="dropdown-item">Unit SD</a>
+                            <a href="{{ route('data.smp.harian') }}" class="dropdown-item">Unit SMP</a>
+                            <a href="{{ route('data.sma.harian') }}" class="dropdown-item">Unit SMA</a>
                         </div>
                     </li>
                         
