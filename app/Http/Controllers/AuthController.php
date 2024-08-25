@@ -68,43 +68,33 @@ class AuthController extends Controller
         ]);
     }
     
-
-
-
-        public function logout()
+    public function logout()
         {
             Auth::logout();
 
             return redirect('/login');
         }
 
-        public function daftar(Request $request)
+        protected function authenticated(Request $request, $user)
         {
-            // Validate the request data
-            // $request->validate(User::$rules);
-        
-            try {
-                // Create a new User instance with the request data
-                $user = new User($request->all());
-        
-                // Hash the password before saving
-                if ($request->has('password')) {
-                    $user->password = Hash::make($request->input('password'));
-                }
-        
-                // Save the user to the database
-                $user->save();
-        
-                // Flash success message and redirect to the user index page
-                $request->session()->flash('success', 'Berhasil menambahkan.');
-                return redirect()->route('user.index')->with('success', 'Data berhasil disimpan.');
-        
-            } catch (\Exception $e) {
-                // Flash error messages and redirect back with input
-                $request->session()->flash('error', 'Gagal menambahkan.');
-                $request->session()->flash('error-details', $e->getMessage());
-                return redirect()->back()->withInput();
+            // Periksa role user dan arahkan ke halaman yang sesuai
+            if ($user->role === 'admin') {
+                return redirect()->route('admin.dashboard');
+            } 
+            elseif ($user->role === 'yayasan') {
+                return redirect()->route('yayasan.dashboard');
             }
+            elseif ($user->role === 'guru') {
+                return redirect()->route('absen.guru');
+            }
+            elseif ($user->role === 'kepala-sekolah') {
+                    return redirect()->route('absen.kepsek');
+            } else {
+                return redirect()->route('user.dashboard');
+            }
+    
+            // Default redirect jika tidak ada role yang sesuai
+            return redirect('/user-home');
         }
 
 

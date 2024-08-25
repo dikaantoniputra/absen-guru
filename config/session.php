@@ -31,9 +31,13 @@ return [
     |
     */
 
-    'lifetime' => env('SESSION_LIFETIME', 120),
+    // 'lifetime' => env('SESSION_LIFETIME', 120),
+    'lifetime' => 45, //memberika waktu 45 menit
 
-    'expire_on_close' => false,
+
+    // 'expire_on_close' => false,
+    'expire_on_close' => true,
+
 
     /*
     |--------------------------------------------------------------------------

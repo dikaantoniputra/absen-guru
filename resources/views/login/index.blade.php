@@ -53,7 +53,7 @@
                                     <button class="btn btn-primary" type="submit"> Log In </button>
                                 </div>
                             </form>
-                            <p> <a href="pages-recoverpw.html" class="text-muted ms-1"><i class="fa fa-lock me-1"></i>Lupa Password?</a></p>
+                            {{-- <p> <a href="pages-recoverpw.html" class="text-muted ms-1"><i class="fa fa-lock me-1"></i>Lupa Password?</a></p> --}}
                         </div> <!-- end card-body -->
                     </div>
                     <!-- end card -->
