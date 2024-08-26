@@ -14,9 +14,26 @@ class AbsenMasukController extends Controller
      *
      * @return \Illuminate\Http\Response
      */
-    public function index()
+    public function index(Request $request)
     {
-        $absenMasuk = AbsenMasuk::all();
+        $queryMasuk = AbsenMasuk::query();
+    
+    // Apply date filter if dates are provided
+        if ($request->start_date && $request->end_date) {
+            $queryMasuk->whereBetween('created_at', [$request->start_date, $request->end_date]);
+        }
+
+        // Apply name filter if a name is provided
+        if ($request->name) {
+            $queryMasuk->whereHas('user', function($q) use ($request) {
+                $q->where('name', 'like', '%' . $request->name . '%');
+            });
+        }
+
+        // Get the filtered results
+        $absenMasuk = $queryMasuk->get();
+
+        // Return the view with the filtered results
         return view('page.masuk.index', compact('absenMasuk'));
     }
 

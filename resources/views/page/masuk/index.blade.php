@@ -14,6 +14,35 @@
 @section('content')
 
 
+<div class="row">
+    <div class="col-12">
+        <div class="card">
+            <div class="card-body">
+                <h4 class="mt-0 header-title">Filter Absen</h4>
+                <form action="{{ route('absenmasuk.index') }}" method="GET">
+                    <div class="row">
+                        <div class="col-md-4">
+                            <label for="start_date">Tanggal Mulai:</label>
+                            <input type="date" name="start_date" class="form-control" value="{{ request('start_date') }}">
+                        </div>
+                        <div class="col-md-4">
+                            <label for="end_date">Tanggal Sampai:</label>
+                            <input type="date" name="end_date" class="form-control" value="{{ request('end_date') }}">
+                        </div>
+                        <div class="col-md-4">
+                            <label for="name">Nama:</label>
+                            <input type="text" name="name" class="form-control" placeholder="Nama" value="{{ request('name') }}">
+                        </div>
+                    </div>
+                    <div class="mt-3">
+                        <button type="submit" class="btn btn-primary">Filter</button>
+                        <a href="{{ route('laporan.tk.yayasan') }}" class="btn btn-secondary">Reset Filter</a>
+                    </div>
+                </form>
+            </div>
+        </div>
+    </div>
+</div>
 
     <div class="row">
         <div class="col-12">

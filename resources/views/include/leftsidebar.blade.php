@@ -13,50 +13,59 @@
             
                     </li>
 
-                    <li class="nav-item dropdown">
-                        <a class="nav-link arrow-none" href="{{ url('/harian') }}" id="topnav-dashboard" role="button"
-                            aria-haspopup="true" aria-expanded="false">
-                            <i class="mdi mdi-view-dashboard me-1"></i> Harian / Pebandingan
-                        </a>
-            
-                    </li>
+                   
 
                     <li class="nav-item dropdown">
                         <a class="nav-link arrow-none" id="topnav-dashboard" role="button"
                         aria-haspopup="true" aria-expanded="false" href="{{ route('user.index') }}">
                             <i class="mdi mdi-calendar-blank-outline"></i>
-                            <span> MANAJEMEN User </span>
+                            <span> Manajemen Karyawan Unit </span>
                         </a>
                     </li>
 
                     <li class="nav-item dropdown">
-                        <a class="nav-link arrow-none" id="topnav-dashboard" role="button"
-                        aria-haspopup="true" aria-expanded="false" href="{{ route('absenmasuk.index') }}">
-                            <i class="mdi mdi-calendar-blank-outline"></i>
-                            <span> MANAJEMEN Absen Masuk </span>
+                        <a class="nav-link dropdown-toggle arrow-none" href="#" id="topnav-layout" role="button"
+                            data-bs-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+                            <i class="mdi mdi-card-bulleted-settings-outline me-1"></i>Manajemen Absensi<div class="arrow-down"></div>
                         </a>
+                        <div class="dropdown-menu" aria-labelledby="topnav-layout">
+                            <a href="{{ route('absenmasuk.index') }}" class="dropdown-item">Absen Masuk</a>
+                            <a href="{{ route('absenpulang.index') }}" class="dropdown-item">Absen Pulang</a>
+                            
+                        </div>
                     </li>
 
+                    
+                  
+                    
+
                     <li class="nav-item dropdown">
-                        <a class="nav-link arrow-none" id="topnav-dashboard" role="button"
-                        aria-haspopup="true" aria-expanded="false" href="{{ route('absenpulang.index') }}">
-                            <i class="mdi mdi-calendar-blank-outline"></i>
-                            <span> MANAJEMEN Absen Pulang </span>
+                        <a class="nav-link dropdown-toggle arrow-none" href="#" id="topnav-layout" role="button"
+                            data-bs-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+                            <i class="mdi mdi-card-bulleted-settings-outline me-1"></i> Absen Harian Masuk<div class="arrow-down"></div>
                         </a>
+                        <div class="dropdown-menu" aria-labelledby="topnav-layout">
+                            <a href="{{ route('admin.tk.harian') }}" class="dropdown-item">Unit TK</a>
+                            <a href="{{ route('admin.sd.harian') }}" class="dropdown-item">Unit SD</a>
+                            <a href="{{ route('admin.smp.harian') }}" class="dropdown-item">Unit SMP</a>
+                            <a href="{{ route('admin.sma.harian') }}" class="dropdown-item">Unit SMA</a>
+                        </div>
                     </li>
                         
                     <li class="nav-item dropdown">
                         <a class="nav-link dropdown-toggle arrow-none" href="#" id="topnav-layout" role="button"
                             data-bs-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
-                            <i class="mdi mdi-card-bulleted-settings-outline me-1"></i> Laporan <div class="arrow-down"></div>
+                            <i class="mdi mdi-card-bulleted-settings-outline me-1"></i> Laporan All<div class="arrow-down"></div>
                         </a>
                         <div class="dropdown-menu" aria-labelledby="topnav-layout">
-                            <a href="layouts-horizontal.html" class="dropdown-item">Unit TK</a>
-                            <a href="index.html" class="dropdown-item">Unit SD</a>
-                            <a href="layouts-preloader.html" class="dropdown-item">Unit SMP</a>
-                            <a href="layouts-preloader.html" class="dropdown-item">Unit SMP</a>
+                            <a href="{{ route('laporan.tk.yayasan') }}" class="dropdown-item">Unit TK</a>
+                            <a href="{{ route('laporan.sd.yayasan') }}" class="dropdown-item">Unit SD</a>
+                            <a href="{{ route('laporan.smp.yayasan') }}" class="dropdown-item">Unit SMP</a>
+                            <a href="{{ route('laporan.sma.yayasan') }}" class="dropdown-item">Unit SMA</a>
                         </div>
                     </li>
+
+                    
                 </ul> <!-- end navbar-->
                 @endif
                 @if (auth()->user()->role == 'yayasan')

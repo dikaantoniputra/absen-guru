@@ -49,7 +49,12 @@ Route::group(['middleware' => ['auth']], function () {
         })->name('admin.dashboard');
         Route::resource('user', UserController::class);
         Route::resource('absenmasuk', AbsenMasukController::class);
-         Route::resource('absenpulang', AbsenPulangController::class);
+        Route::resource('absenpulang', AbsenPulangController::class);
+
+        Route::get('absen-harian-tk', [YayasanController::class, 'hariantk'])->name('admin.tk.harian');
+        Route::get('absen-harian-sd', [YayasanController::class, 'hariansd'])->name('admin.sd.harian');
+        Route::get('absen-harian-smp', [YayasanController::class, 'hariansmp'])->name('admin.smp.harian');
+        Route::get('absen-harian-sma', [YayasanController::class, 'hariansma'])->name('admin.sma.harian');
        
     });
 
@@ -66,9 +71,6 @@ Route::group(['middleware' => ['auth']], function () {
         Route::get('laporan-unit-sd', [YayasanController::class, 'laporansd'])->name('laporan.sd.yayasan');
         Route::get('laporan-unit-smp', [YayasanController::class, 'laporansmp'])->name('laporan.smp.yayasan');
         Route::get('laporan-unit-sma', [YayasanController::class, 'laporansma'])->name('laporan.sma.yayasan');
-
-        Route::get('/absen/filter', [YayasanController::class, 'filterAbsen'])->name('absen.filter');
-
        
     });
 

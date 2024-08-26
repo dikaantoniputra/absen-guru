@@ -27,6 +27,15 @@
                 </div>
             </div>
 
+            
+            <div class="row mb-3">
+                <label for="inputDatetime" class="col-4 col-form-label">Jam Masuk<span class="text-danger"> *</span></label>
+                <div class="col-7">
+                    <input type="datetime-local" class="form-control" id="inputDatetime" name="created_at" placeholder="Keterangan"
+                           value="{{ $masuk->created_at ? $masuk->created_at->format('Y-m-d\TH:i') : '' }}" />
+                </div>
+            </div>
+
         
             <div class="row mb-3">
                 <label for="hori-pass2" class="col-4 col-form-label">Status Akun <span class="text-danger">*</span></label>
