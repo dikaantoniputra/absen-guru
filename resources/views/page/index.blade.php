@@ -727,7 +727,7 @@
                                         <th>No</th>  
                                         <th>Nama</th>  
                                         <th>Jam</th>
-                                        <th>Status</th>
+                                        <th>Unit</th>
                                         <th>Guru</th>
                                     </tr>
                                 </tr>
@@ -752,16 +752,9 @@
         
                                         <td>{{ $absenPulang->created_at->format('H:i') }}</td>
     
-                                        <td>
-                                            @if ($absenPulang->status == 0)
-                                                Masuk
-                                            @elseif($absenPulang->status == 1)
-                                                Di Tolak
-                                            
-                                            @else
-                                            @endif
-                                        </td>
-                                       
+                                        
+                                        <td>{{ $absenPulang->user->kategori }}</td>
+
                                         <td>
                                             @if(isset($absenPulang->gambar))
                                             <!-- Thumbnail Image -->
