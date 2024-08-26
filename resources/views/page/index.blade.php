@@ -723,66 +723,79 @@
                         <table class="table table-hover mb-0">
                             <thead>
                                 <tr>
-                                    <th>#</th>
-                                    <th>Project Name</th>
-                                    <th>Start Date</th>
-                                    <th>Due Date</th>
-                                    <th>Status</th>
-                                    <th>Assign</th>
+                                    <tr>
+                                        <th>No</th>  
+                                        <th>Nama</th>  
+                                        <th>Jam</th>
+                                        <th>Status</th>
+                                        <th>Guru</th>
+                                    </tr>
                                 </tr>
                             </thead>
                             <tbody>
-                                <tr>
-                                    <td>1</td>
-                                    <td>YBPPK PIRNGADI Admin v1</td>
-                                    <td>01/01/2017</td>
-                                    <td>26/04/2017</td>
-                                    <td><span class="badge bg-danger">Released</span></td>
-                                    <td>Coderthemes</td>
-                                </tr>
-                                <tr>
-                                    <td>2</td>
-                                    <td>YBPPK PIRNGADI Frontend v1</td>
-                                    <td>01/01/2017</td>
-                                    <td>26/04/2017</td>
-                                    <td><span class="badge bg-success">Released</span></td>
-                                    <td>YBPPK PIRNGADI admin</td>
-                                </tr>
-                                <tr>
-                                    <td>3</td>
-                                    <td>YBPPK PIRNGADI Admin v1.1</td>
-                                    <td>01/05/2017</td>
-                                    <td>10/05/2017</td>
-                                    <td><span class="badge bg-pink">Pending</span></td>
-                                    <td>Coderthemes</td>
-                                </tr>
-                                <tr>
-                                    <td>4</td>
-                                    <td>YBPPK PIRNGADI Frontend v1.1</td>
-                                    <td>01/01/2017</td>
-                                    <td>31/05/2017</td>
-                                    <td><span class="badge bg-purple">Work in Progress</span>
-                                    </td>
-                                    <td>YBPPK PIRNGADI admin</td>
-                                </tr>
-                                <tr>
-                                    <td>5</td>
-                                    <td>YBPPK PIRNGADI Admin v1.3</td>
-                                    <td>01/01/2017</td>
-                                    <td>31/05/2017</td>
-                                    <td><span class="badge bg-warning">Coming soon</span></td>
-                                    <td>Coderthemes</td>
-                                </tr>
-
-                                <tr>
-                                    <td>6</td>
-                                    <td>YBPPK PIRNGADI Admin v1.3</td>
-                                    <td>01/01/2017</td>
-                                    <td>31/05/2017</td>
-                                    <td><span class="badge bg-primary">Coming soon</span></td>
-                                    <td>YBPPK PIRNGADI admin</td>
-                                </tr>
-
+                                @forelse ($usersHariIni as $absenPulang)
+                                @php
+                                        $days = [
+                                            'Sunday' => 'Minggu',
+                                            'Monday' => 'Senin',
+                                            'Tuesday' => 'Selasa',
+                                            'Wednesday' => 'Rabu',
+                                            'Thursday' => 'Kamis',
+                                            'Friday' => 'Jumat',
+                                            'Saturday' => 'Sabtu'
+                                        ];
+                                        $dayName = $days[$absenPulang->created_at->format('l')];
+                                    @endphp
+                                    <tr>
+                                        <td>{{ $loop->iteration }}</td>
+                                        <td>{{ $absenPulang->user->name }}</td>
+        
+                                        <td>{{ $absenPulang->created_at->format('H:i') }}</td>
+    
+                                        <td>
+                                            @if ($absenPulang->status == 0)
+                                                Masuk
+                                            @elseif($absenPulang->status == 1)
+                                                Di Tolak
+                                            
+                                            @else
+                                            @endif
+                                        </td>
+                                       
+                                        <td>
+                                            @if(isset($absenPulang->gambar))
+                                            <!-- Thumbnail Image -->
+                                            <img class="d-block img-fluid" src="{{ asset('gambar/' . $absenPulang->gambar) }}" alt="Gambar Absen" style="width: 30px; cursor: pointer;" data-bs-toggle="modal" data-bs-target="#imageModal">
+        
+                                            <!-- Modal -->
+        
+                                            @endif
+        
+                                        </td>
+        
+                                        </tr>
+                                        <div class="modal fade" id="imageModal" tabindex="-1" aria-labelledby="imageModalLabel" aria-hidden="true">
+                                            <div class="modal-dialog modal-dialog-centered">
+                                                <div class="modal-content">
+                                                    <div class="modal-header">
+                                                        <h5 class="modal-title" id="imageModalLabel">Gambar Absen</h5>
+                                                        <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+                                                    </div>
+                                                    <div class="modal-body">
+                                                        <img class="img-fluid" src="{{ asset('gambar/' . $absenPulang->gambar) }}" alt="Gambar Absen">
+                                                    </div>
+                                                </div>
+                                            </div>
+                                        </div>
+                                @empty
+                                    <div>
+                                        Data Kosong
+                                    </div>
+    
+                                 
+    
+                                @endforelse
+    
                             </tbody>
                         </table>
                     </div>

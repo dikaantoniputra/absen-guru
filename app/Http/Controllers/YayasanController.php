@@ -75,9 +75,16 @@ class YayasanController extends Controller
 
         $jumlahUserSMA = User::where('kategori', 'SMA')->count();
 
+        $hariIni = date('Y-m-d');
+
+        // Mendapatkan semua user yang datang pada hari ini
+        $usersHariIni = User::whereDate('created_at', $hariIni)
+            ->orderBy('created_at', 'asc')
+            ->get();
+
 
         return view('page.index', compact('jumlahAbsenMasukTK','jumlahAbsenPulangtK','jumlahUserTK','jumlahAbsenMasukSd','jumlahAbsenPulangSd','jumlahUserSD','jumlahAbsenMasukSmp','jumlahAbsenPulangSmp','jumlahUserSMP'
-                                          ,'jumlahAbsenMasukSma','jumlahAbsenPulangSma','jumlahUserSMA'));
+                                          ,'jumlahAbsenMasukSma','jumlahAbsenPulangSma','jumlahUserSMA','usersHariIni'));
     }
 
     /**
@@ -170,8 +177,13 @@ class YayasanController extends Controller
 
     public function laporantk(Request $request)
     {
-        $queryMasuk = AbsenMasuk::query();
-        $queryPulang = AbsenPulang::query();
+        $queryMasuk = AbsenMasuk::whereHas('user', function($q) {
+            $q->where('kategori', 'TK'); // Assuming 'category' is the field for the category
+        });
+    
+        $queryPulang = AbsenPulang::whereHas('user', function($q) {
+            $q->where('kategori', 'TK'); // Assuming 'category' is the field for the category
+        });
 
         // Apply date filter if dates are provided
         if ($request->start_date && $request->end_date) {
@@ -193,6 +205,102 @@ class YayasanController extends Controller
         $absenPulang = $queryPulang->get();
 
         return view('yayasan.laporan-masuk-tk', compact('absenMasuk', 'absenPulang'));
+    }
+
+    public function laporansd(Request $request)
+    {
+        $queryMasuk = AbsenMasuk::whereHas('user', function($q) {
+            $q->where('kategori', 'SD'); // Assuming 'category' is the field for the category
+        });
+    
+        $queryPulang = AbsenPulang::whereHas('user', function($q) {
+            $q->where('kategori', 'SD'); // Assuming 'category' is the field for the category
+        });
+
+        // Apply date filter if dates are provided
+        if ($request->start_date && $request->end_date) {
+            $queryMasuk->whereBetween('created_at', [$request->start_date, $request->end_date]);
+            $queryPulang->whereBetween('created_at', [$request->start_date, $request->end_date]);
+        }
+
+        // Apply name filter if a name is provided
+        if ($request->name) {
+            $queryMasuk->whereHas('user', function($q) use ($request) {
+                $q->where('name', 'like', '%' . $request->name . '%');
+            });
+            $queryPulang->whereHas('user', function($q) use ($request) {
+                $q->where('name', 'like', '%' . $request->name . '%');
+            });
+        }
+
+        $absenMasuk = $queryMasuk->get();
+        $absenPulang = $queryPulang->get();
+
+        return view('yayasan.laporan-masuk-sd', compact('absenMasuk', 'absenPulang'));
+    }
+
+    public function laporansmp(Request $request)
+    {
+        $queryMasuk = AbsenMasuk::whereHas('user', function($q) {
+            $q->where('kategori', 'SMP'); // Assuming 'category' is the field for the category
+        });
+    
+        $queryPulang = AbsenPulang::whereHas('user', function($q) {
+            $q->where('kategori', 'SMP'); // Assuming 'category' is the field for the category
+        });
+
+        // Apply date filter if dates are provided
+        if ($request->start_date && $request->end_date) {
+            $queryMasuk->whereBetween('created_at', [$request->start_date, $request->end_date]);
+            $queryPulang->whereBetween('created_at', [$request->start_date, $request->end_date]);
+        }
+
+        // Apply name filter if a name is provided
+        if ($request->name) {
+            $queryMasuk->whereHas('user', function($q) use ($request) {
+                $q->where('name', 'like', '%' . $request->name . '%');
+            });
+            $queryPulang->whereHas('user', function($q) use ($request) {
+                $q->where('name', 'like', '%' . $request->name . '%');
+            });
+        }
+
+        $absenMasuk = $queryMasuk->get();
+        $absenPulang = $queryPulang->get();
+
+        return view('yayasan.laporan-masuk-smp', compact('absenMasuk', 'absenPulang'));
+    }
+
+    public function laporansma(Request $request)
+    {
+        $queryMasuk = AbsenMasuk::whereHas('user', function($q) {
+            $q->where('kategori', 'SMP'); // Assuming 'category' is the field for the category
+        });
+    
+        $queryPulang = AbsenPulang::whereHas('user', function($q) {
+            $q->where('kategori', 'SMP'); // Assuming 'category' is the field for the category
+        });
+
+        // Apply date filter if dates are provided
+        if ($request->start_date && $request->end_date) {
+            $queryMasuk->whereBetween('created_at', [$request->start_date, $request->end_date]);
+            $queryPulang->whereBetween('created_at', [$request->start_date, $request->end_date]);
+        }
+
+        // Apply name filter if a name is provided
+        if ($request->name) {
+            $queryMasuk->whereHas('user', function($q) use ($request) {
+                $q->where('name', 'like', '%' . $request->name . '%');
+            });
+            $queryPulang->whereHas('user', function($q) use ($request) {
+                $q->where('name', 'like', '%' . $request->name . '%');
+            });
+        }
+
+        $absenMasuk = $queryMasuk->get();
+        $absenPulang = $queryPulang->get();
+
+        return view('yayasan.laporan-masuk-sma', compact('absenMasuk', 'absenPulang'));
     }
 
     
