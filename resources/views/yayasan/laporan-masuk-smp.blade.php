@@ -49,7 +49,7 @@
         <div class="col-12">
             <div class="card">
                 <div class="card-body">
-                    <h4 class="mt-0 header-title">Lihat Absen Masuk TK</h4>
+                    <h4 class="mt-0 header-title">Lihat Absen Masuk </h4>
                   
             
                         <table id="datatable-buttons" class="table table-striped table-bordered dt-responsive nowrap">
@@ -57,6 +57,8 @@
                             <tr>
                                 <th>No</th>  
                                 <th>Nama</th>  
+                                <th>Tgl</th>
+                                <th>Bulan</th>
                                 <th>Jam</th>
                                 <th>Status</th>
                                 <th>Guru</th>
@@ -81,7 +83,8 @@
                                 <tr>
                                     <td>{{ $loop->iteration }}</td>
                                     <td>{{ $absenMasuk->user->name }}</td>
-    
+                                    <td>{{ $dayName }}, Tgl - {{ $absenMasuk->created_at->format('d') }}</td>
+                                    <td>{{ $absenMasuk->created_at->format('M') }}</td>
                                     <td>{{ $absenMasuk->created_at->format('H:i') }}</td>
 
                                     <td>
@@ -140,7 +143,7 @@
         <div class="col-12">
             <div class="card">
                 <div class="card-body">
-                    <h4 class="mt-0 header-title">Lihat Absen Pulang tk</h4>
+                    <h4 class="mt-0 header-title">Lihat Absen Pulang </h4>
                   
             
                         <table id="datatable-buttons2" class="table table-striped table-bordered dt-responsive nowrap">
@@ -148,6 +151,8 @@
                             <tr>
                                 <th>No</th>  
                                 <th>Nama</th>  
+                                <th>Tgl</th>
+                                <th>Bulan</th>
                                 <th>Jam</th>
                                 <th>Status</th>
                                 <th>Guru</th>
@@ -172,7 +177,8 @@
                                 <tr>
                                     <td>{{ $loop->iteration }}</td>
                                     <td>{{ $absenPulang->user->name }}</td>
-    
+                                    <td>{{ $dayName }}, Tgl - {{ $absenPulang->created_at->format('d') }}</td>
+                                    <td>{{ $absenPulang->created_at->format('M') }}</td>
                                     <td>{{ $absenPulang->created_at->format('H:i') }}</td>
 
                                     <td>
