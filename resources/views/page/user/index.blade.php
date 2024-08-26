@@ -13,6 +13,8 @@
         type="text/css" />
     <link href="{{ asset('') }}assets/libs/datatables.net-select-bs5/css//select.bootstrap5.min.css" rel="stylesheet"
         type="text/css" />
+
+        
 @endpush
 
 @section('content')
@@ -153,4 +155,9 @@
 
     <!-- Datatables init -->
     <script src="{{ asset('') }}assets/js/pages/datatables.init.js"></script>
+
+    <script src="{{ asset('') }}assets/libs/jquery/jquery.min.js"></script>
+<script src="{{ asset('') }}assets/libs/bootstrap/js/bootstrap.bundle.min.js"></script>
+<script src="{{ asset('') }}assets/libs/simplebar/simplebar.min.js"></script>
+
 @endpush

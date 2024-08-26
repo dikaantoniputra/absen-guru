@@ -58,10 +58,10 @@
                             <i class="mdi mdi-card-bulleted-settings-outline me-1"></i> Laporan All<div class="arrow-down"></div>
                         </a>
                         <div class="dropdown-menu" aria-labelledby="topnav-layout">
-                            <a href="{{ route('laporan.tk.yayasan') }}" class="dropdown-item">Unit TK</a>
-                            <a href="{{ route('laporan.sd.yayasan') }}" class="dropdown-item">Unit SD</a>
-                            <a href="{{ route('laporan.smp.yayasan') }}" class="dropdown-item">Unit SMP</a>
-                            <a href="{{ route('laporan.sma.yayasan') }}" class="dropdown-item">Unit SMA</a>
+                            <a href="{{ route('laporan.tk.admin') }}" class="dropdown-item">Unit TK</a>
+                            <a href="{{ route('laporan.sd.admin') }}" class="dropdown-item">Unit SD</a>
+                            <a href="{{ route('laporan.smp.admin') }}" class="dropdown-item">Unit SMP</a>
+                            <a href="{{ route('laporan.sma.admin') }}" class="dropdown-item">Unit SMA</a>
                         </div>
                     </li>
 

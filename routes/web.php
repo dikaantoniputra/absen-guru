@@ -56,6 +56,12 @@ Route::group(['middleware' => ['auth']], function () {
         Route::get('absen-harian-smp', [YayasanController::class, 'hariansmp'])->name('admin.smp.harian');
         Route::get('absen-harian-sma', [YayasanController::class, 'hariansma'])->name('admin.sma.harian');
        
+
+        Route::get('laporan-unit-tk', [YayasanController::class, 'laporantk'])->name('laporan.tk.admin');
+        Route::get('laporan-unit-sd', [YayasanController::class, 'laporansd'])->name('laporan.sd.admin');
+        Route::get('laporan-unit-smp', [YayasanController::class, 'laporansmp'])->name('laporan.smp.admin');
+        Route::get('laporan-unit-sma', [YayasanController::class, 'laporansma'])->name('laporan.sma.admin');
+
     });
 
     Route::group(['prefix' => 'yayasan', 'middleware' => 'role:yayasan'], function () {

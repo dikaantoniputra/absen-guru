@@ -70,62 +70,9 @@
     <script src="{{ asset('') }}assets/js/pages/datatables.init.js"></script>
     
    
-<script>
-    
-</script>
-    <script>
-        let table = $('#datatable').DataTable({
-            processing: true,
-            serverSide: true,
-            orderable: true,
-            ajax: "{{ route('user.index') }}",
-            columns: [{
-                    data: 'id',
-                    name: 'id'
-                },
-                {
-                    data: 'nik',
-                    name: 'nik',
-                    orderable: false
-                },
-                {
-                    data: 'name',
-                    name: 'name'
-                },
-                {
-                    data: 'username',
-                    name: 'username'
-                },
-                {
-                    data: 'wa',
-                    name: 'wa'
-                },
-                {
-                    data: 'role',
-                    name: 'role'
-                },
-                {
-                    data: 'status',
-                    name: 'status'
-                },
-                {
-                    data: 'action',
-                    name: 'action',
-                    orderable: false,
-                    searchable: false
-                }
-                ],
-                    order: [[5, 'asc']],
-                    dom: 'Bfrtip',
-                    buttons: [
-                        'copy', 'csv', 'excel', 'pdf', 'print'
-                    ]
-      
-        });
-
-
-    </script>
-
+    <script src="{{ asset('') }}assets/libs/jquery/jquery.min.js"></script>
+<script src="{{ asset('') }}assets/libs/bootstrap/js/bootstrap.bundle.min.js"></script>
+<script src="{{ asset('') }}assets/libs/simplebar/simplebar.min.js"></script>
     
    
 @endpush
