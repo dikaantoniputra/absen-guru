@@ -166,5 +166,37 @@ class YayasanController extends Controller
         return view('yayasan.absen-masuk-sma', compact('absenPulang','absenMasuk'));
     }
 
+   
+
+    public function laporantk(Request $request)
+    {
+        $queryMasuk = AbsenMasuk::query();
+        $queryPulang = AbsenPulang::query();
+
+        // Apply date filter if dates are provided
+        if ($request->start_date && $request->end_date) {
+            $queryMasuk->whereBetween('created_at', [$request->start_date, $request->end_date]);
+            $queryPulang->whereBetween('created_at', [$request->start_date, $request->end_date]);
+        }
+
+        // Apply name filter if a name is provided
+        if ($request->name) {
+            $queryMasuk->whereHas('user', function($q) use ($request) {
+                $q->where('name', 'like', '%' . $request->name . '%');
+            });
+            $queryPulang->whereHas('user', function($q) use ($request) {
+                $q->where('name', 'like', '%' . $request->name . '%');
+            });
+        }
+
+        $absenMasuk = $queryMasuk->get();
+        $absenPulang = $queryPulang->get();
+
+        return view('yayasan.laporan-masuk-tk', compact('absenMasuk', 'absenPulang'));
+    }
+
+    
+
+
     
 }

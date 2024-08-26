@@ -19,7 +19,7 @@
         <div class="col-12">
             <div class="card">
                 <div class="card-body">
-                    <h4 class="mt-0 header-title">Lihat Absen Masuk</h4>
+                    <h4 class="mt-0 header-title">Lihat Absen Masuk </h4>
                   
             
                         <table id="datatable-buttons" class="table table-striped table-bordered dt-responsive nowrap">
@@ -67,7 +67,7 @@
                                     <td>
                                         @if(isset($absenMasuk->gambar))
                                         <!-- Thumbnail Image -->
-                                        <img class="d-block img-fluid" src="{{ asset('gambar/' . $absenMasuk->gambar) }}" alt="Gambar Absen" style="width: 30px; cursor: pointer;" data-bs-toggle="modal" data-bs-target="#imageModal">
+                                        <img class="d-block img-fluid" src="{{ asset('gambar/' . $absenMasuk->gambar) }}" alt="Gambar Absen" style="width: 30px; cursor: pointer;" data-bs-toggle="modal" data-bs-target="#imageModal{{ $absenMasuk->id }}">
     
                                         <!-- Modal -->
     
@@ -76,7 +76,7 @@
                                     </td>
     
                                     </tr>
-                                    <div class="modal fade" id="imageModal" tabindex="-1" aria-labelledby="imageModalLabel" aria-hidden="true">
+                                    <div class="modal fade" id="imageModal{{ $absenMasuk->id }}" tabindex="-1" aria-labelledby="imageModalLabel" aria-hidden="true">
                                         <div class="modal-dialog modal-dialog-centered">
                                             <div class="modal-content">
                                                 <div class="modal-header">
@@ -110,7 +110,7 @@
         <div class="col-12">
             <div class="card">
                 <div class="card-body">
-                    <h4 class="mt-0 header-title">Lihat Absen Pulang</h4>
+                    <h4 class="mt-0 header-title">Lihat Absen Pulang </h4>
                   
             
                         <table id="datatable-buttons2" class="table table-striped table-bordered dt-responsive nowrap">
@@ -219,8 +219,7 @@
 <!-- Datatables init -->
 <script src="{{ asset('') }}assets/js/pages/datatables.init.js"></script>
 
-<!-- App js -->
-<script src="{{ asset('') }}assets/js/app.min.js"></script>
+
 <script>
     "use strict";
 $(document).ready(function() {
@@ -239,5 +238,7 @@ $(document).ready(function() {
 });
 
 </script>
+<!-- App js -->
+<script src="{{ asset('') }}assets/js/app.min.js"></script>
 
 @endpush

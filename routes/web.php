@@ -66,6 +66,9 @@ Route::group(['middleware' => ['auth']], function () {
         Route::get('laporan-unit-sd', [YayasanController::class, 'laporansd'])->name('laporan.sd.yayasan');
         Route::get('laporan-unit-smp', [YayasanController::class, 'laporansmp'])->name('laporan.smp.yayasan');
         Route::get('laporan-unit-sma', [YayasanController::class, 'laporansma'])->name('laporan.sma.yayasan');
+
+        Route::get('/absen/filter', [YayasanController::class, 'filterAbsen'])->name('absen.filter');
+
        
     });
 
