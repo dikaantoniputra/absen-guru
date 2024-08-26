@@ -78,7 +78,7 @@ class YayasanController extends Controller
         $hariIni = date('Y-m-d');
 
         // Mendapatkan semua user yang datang pada hari ini
-        $usersHariIni = User::whereDate('created_at', $hariIni)
+        $usersHariIni = AbsenMasuk::whereDate('created_at', $hariIni)
             ->orderBy('created_at', 'asc')
             ->get();
 
