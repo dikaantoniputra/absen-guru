@@ -47,8 +47,37 @@ class YayasanController extends Controller
 
         $jumlahUserSD = User::where('kategori', 'SD')->count();
 
+        $jumlahAbsenMasukSmp = AbsenMasuk::whereDate('created_at', Carbon::today())
+        ->whereHas('user', function ($query) {
+            $query->where('kategori', 'SMP');
+        })
+        ->count();
 
-        return view('page.index', compact('jumlahAbsenMasukTK','jumlahAbsenPulangtK','jumlahUserTK','jumlahAbsenMasukSd','jumlahAbsenPulangSd','jumlahUserSD'));
+        $jumlahAbsenPulangSmp = AbsenPulang::whereDate('created_at', Carbon::today())
+            ->whereHas('user', function ($query) {
+                $query->where('kategori', 'SMP');
+            })
+            ->count();
+
+        $jumlahUserSMP = User::where('kategori', 'SMP')->count();
+
+        $jumlahAbsenMasukSma = AbsenMasuk::whereDate('created_at', Carbon::today())
+        ->whereHas('user', function ($query) {
+            $query->where('kategori', 'SMA');
+        })
+        ->count();
+
+        $jumlahAbsenPulangSma = AbsenPulang::whereDate('created_at', Carbon::today())
+            ->whereHas('user', function ($query) {
+                $query->where('kategori', 'SMA');
+            })
+            ->count();
+
+        $jumlahUserSMA = User::where('kategori', 'SMA')->count();
+
+
+        return view('page.index', compact('jumlahAbsenMasukTK','jumlahAbsenPulangtK','jumlahUserTK','jumlahAbsenMasukSd','jumlahAbsenPulangSd','jumlahUserSD','jumlahAbsenMasukSmp','jumlahAbsenPulangSmp','jumlahUserSMP'
+                                          ,'jumlahAbsenMasukSma','jumlahAbsenPulangSma','jumlahUserSMA'));
     }
 
     /**

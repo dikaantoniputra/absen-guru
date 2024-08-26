@@ -113,7 +113,7 @@
                     <h4 class="mt-0 header-title">Lihat Absen Pulang</h4>
                   
             
-                        <table id="datatable-buttons" class="table table-striped table-bordered dt-responsive nowrap">
+                        <table id="datatable-buttons2" class="table table-striped table-bordered dt-responsive nowrap">
                         <thead>
                             <tr>
                                 <th>No</th>  
@@ -221,6 +221,23 @@
 
 <!-- App js -->
 <script src="{{ asset('') }}assets/js/app.min.js"></script>
+<script>
+    "use strict";
+$(document).ready(function() {
+    // Initialize DataTable
+    var table = $("#datatable-buttons2").DataTable({
+        lengthChange: false,
+        buttons: ["copy", "excel", "pdf"]
+    });
 
+    // Add buttons to the table
+    table.buttons().container().appendTo("#datatable-buttons2_wrapper .col-md-6:eq(0)");
+
+    // Adjust the appearance of the table length selector
+    $("#datatable-buttons2_length select[name*='datatable_length']").addClass("form-select form-select-sm").removeClass("custom-select custom-select-sm");
+    $(".dataTables_length label").addClass("form-label");
+});
+
+</script>
 
 @endpush
