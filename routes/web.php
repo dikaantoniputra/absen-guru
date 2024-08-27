@@ -57,10 +57,7 @@ Route::group(['middleware' => ['auth']], function () {
         Route::get('absen-harian-sma', [YayasanController::class, 'hariansma'])->name('admin.sma.harian');
        
 
-        Route::get('laporan-unit-tk', [YayasanController::class, 'laporantk'])->name('laporan.tk.admin');
-        Route::get('laporan-unit-sd', [YayasanController::class, 'laporansd'])->name('laporan.sd.admin');
-        Route::get('laporan-unit-smp', [YayasanController::class, 'laporansmp'])->name('laporan.smp.admin');
-        Route::get('laporan-unit-sma', [YayasanController::class, 'laporansma'])->name('laporan.sma.admin');
+       
 
     });
 
@@ -95,6 +92,11 @@ Route::group(['middleware' => ['auth']], function () {
 
         Route::get('/data-kepsek-masuk', [KepalaSekolahController::class, 'masukkepsek'])->name('masuk.kepsek');
         Route::get('/data-kepsek-pulang', [KepalaSekolahController::class, 'pulangkepsek'])->name('pulang.kepsek');
+
+        Route::get('laporan-unit-tk', [KepalaSekolahController::class, 'laporanTk'])->name('laporan.tk.kepala');
+        Route::get('laporan-unit-sd', [KepalaSekolahController::class, 'laporanTk'])->name('laporan.sd.kepala');
+        Route::get('laporan-unit-smp', [KepalaSekolahController::class, 'laporanTk'])->name('laporan.smp.kepala');
+        Route::get('laporan-unit-sma', [KepalaSekolahController::class, 'laporanTk'])->name('laporan.sma.kepala');
         
     });
 

@@ -62,20 +62,14 @@ Route::group(['middleware' => ['auth']], function () {
         Route::get('absen-harian-smp', [YayasanController::class, 'hariansmp'])->name('data.smp.harian');
         Route::get('absen-harian-sma', [YayasanController::class, 'hariansma'])->name('data.sma.harian');
 
-        Route::get('laporan-unit-tk', [YayasanController::class, 'laporantk'])->name('laporan.tk.yayasan');
-        Route::get('laporan-unit-sd', [YayasanController::class, 'laporansd'])->name('laporan.sd.yayasan');
-        Route::get('laporan-unit-smp', [YayasanController::class, 'laporansmp'])->name('laporan.smp.yayasan');
-        Route::get('laporan-unit-sma', [YayasanController::class, 'laporansma'])->name('laporan.sma.yayasan');
-
-        Route::get('/absen/filter', [YayasanController::class, 'filterAbsen'])->name('absen.filter');
-
        
     });
 
-         Route::group(['prefix' => 'kepala-sekolah', 'middleware' => 'role:kepala-sekolah'], function () {
-        Route::get('/', function () {
-            return view('page.index');
-        })->name('kepala.unit');
+    Route::group(['prefix' => 'kepala-sekolah', 'middleware' => 'role:kepala-sekolah'], function () {
+
+
+        Route::get('/', [YayasanController::class, 'index'])->name('kepala.unit');
+       
        
         Route::get('/absen-masuk-kepala-sekolah', [KepalaSekolahController::class, 'absen'])->name('absen.kepsek');
         Route::get('/absen-pulang-kepala-sekolah', [KepalaSekolahController::class, 'pulang'])->name('absen.kepsek.pulang');
@@ -87,7 +81,11 @@ Route::group(['middleware' => ['auth']], function () {
 
         Route::get('/data-kepsek-masuk', [KepalaSekolahController::class, 'masukkepsek'])->name('masuk.kepsek');
         Route::get('/data-kepsek-pulang', [KepalaSekolahController::class, 'pulangkepsek'])->name('pulang.kepsek');
-        
+
+        Route::get('laporan-unit-tk', [KepalaSekolahController::class, 'laporanTk']);
+       
+
+
     });
 
     Route::group(['prefix' => 'karyawan', 'middleware' => 'role:guru'], function () {
@@ -101,6 +99,9 @@ Route::group(['middleware' => ['auth']], function () {
         Route::get('/karyawan-masuk', [GuruSekolahController::class, 'masukkaryawan'])->name('karyawan.masuk');
         Route::get('karyawan-pulang', [GuruSekolahController::class, 'pulangkaryawan'])->name('karyawan.pulang');
     });
+
+
+    
 
 
 });

@@ -170,14 +170,45 @@
                            
                         </div>
                     </li>
-                        
+
+
+                    @if (auth()->user()->kategori == 'tk')
                     <li class="nav-item dropdown">
-                        <a class="nav-link arrow-none" id="topnav-dashboard" role="button"
-                        aria-haspopup="true" aria-expanded="false" href="{{ route('user.index') }}">
-                            <i class="mdi mdi-calendar-blank-outline"></i>
-                            <span> Laporan Absen Unit </span>
+                        <a class="nav-link arrow-none" href="{{ route('laporan.tk.kepala') }}" id="topnav-dashboard" role="button"
+                            aria-haspopup="true" aria-expanded="false">
+                            <i class="mdi mdi-view-dashboard me-1"></i> Laporan Absen
+                        </a>
+            
+                    </li>
+                    @endif
+                    @if (auth()->user()->kategori == 'sd')
+                    <li class="nav-item dropdown">
+                        <a class="nav-link arrow-none" href="{{ route('laporan.sd.kepala') }}" id="topnav-dashboard" role="button"
+                            aria-haspopup="true" aria-expanded="false">
+                            <i class="mdi mdi-view-dashboard me-1"></i> Laporan Absen
                         </a>
                     </li>
+                    @endif
+                    @if (auth()->user()->kategori == 'smp')
+                    <li class="nav-item dropdown">
+                        <a class="nav-link arrow-none" href="{{ route('laporan.smp.kepala') }}" id="topnav-dashboard" role="button"
+                            aria-haspopup="true" aria-expanded="false">
+                            <i class="mdi mdi-view-dashboard me-1"></i> Laporan Absen
+                        </a>
+                    </li>
+                    @endif
+                    @if (auth()->user()->kategori == 'sma')
+                    <li class="nav-item dropdown">
+                        <a class="nav-link arrow-none" href="{{ route('laporan.sma.kepala') }}" id="topnav-dashboard" role="button"
+                            aria-haspopup="true" aria-expanded="false">
+                            <i class="mdi mdi-view-dashboard me-1"></i> Laporan Absen
+                        </a>
+                    </li>
+                    @endif
+                    
+                   
+
+                   
 
 
                 </ul> <!-- end navbar-->
