@@ -180,6 +180,22 @@
 @endsection
 
 @push('after-script')
+
+<!-- App js -->
+<script src="{{ asset('') }}assets/libs/jquery/jquery.min.js"></script>
+<script src="{{ asset('') }}assets/libs/bootstrap/js/bootstrap.bundle.min.js"></script>
+<script src="{{ asset('') }}assets/libs/simplebar/simplebar.min.js"></script>
+
+    <script src="{{ asset('') }}assets/libs/jquery/jquery.min.js"></script>
+    <script src="{{ asset('') }}assets/libs/bootstrap/js/bootstrap.bundle.min.js"></script>
+    <script src="{{ asset('') }}assets/libs/simplebar/simplebar.min.js"></script>
+    <script src="{{ asset('') }}assets/libs/node-waves/waves.min.js"></script>
+    <script src="{{ asset('') }}assets/libs/waypoints/lib/jquery.waypoints.min.js"></script>
+    <script src="{{ asset('') }}assets/libs/jquery.counterup/jquery.counterup.min.js"></script>
+    <script src="{{ asset('') }}assets/libs/feather-icons/feather.min.js"></script>
+
+
+
 <script src="{{ asset('') }}assets/libs/datatables.net/js/jquery.dataTables.min.js"></script>
 <script src="{{ asset('') }}assets/libs/datatables.net-bs5/js/dataTables.bootstrap5.min.js"></script>
 <script src="{{ asset('') }}assets/libs/datatables.net-responsive/js/dataTables.responsive.min.js"></script>
@@ -198,12 +214,25 @@
 <!-- Datatables init -->
 <script src="{{ asset('') }}assets/js/pages/datatables.init.js"></script>
 
-<!-- App js -->
-<script src="{{ asset('') }}assets/js/app.min.js"></script>
 
-<script src="{{ asset('') }}assets/libs/jquery/jquery.min.js"></script>
-<script src="{{ asset('') }}assets/libs/bootstrap/js/bootstrap.bundle.min.js"></script>
-<script src="{{ asset('') }}assets/libs/simplebar/simplebar.min.js"></script>
+<script>
+    "use strict";
+$(document).ready(function() {
+    // Initialize DataTable
+    var table = $("#datatable-buttons2").DataTable({
+        lengthChange: false,
+        buttons: ["copy", "excel", "pdf"]
+    });
 
+    // Add buttons to the table
+    table.buttons().container().appendTo("#datatable-buttons2_wrapper .col-md-6:eq(0)");
+
+    // Adjust the appearance of the table length selector
+    $("#datatable-buttons2_length select[name*='datatable_length']").addClass("form-select form-select-sm").removeClass("custom-select custom-select-sm");
+    $(".dataTables_length label").addClass("form-label");
+});
+
+</script>
 
 @endpush
+
