@@ -132,6 +132,17 @@ class GuruSekolahController extends Controller
 
             $user = auth()->user();
 
+            $today = now()->format('Y-m-d');
+            $existingAbsenMasuk = AbsenMasuk::where('user_id', $user->id)
+                                    ->whereDate('created_at', $today)
+                                    ->first();
+
+            if (!$existingAbsenMasuk) {
+                // Jika belum ada absen masuk hari ini, tampilkan pesan kesalahan
+                $request->session()->flash('error', 'Anda belum absen masuk hari ini. Harap lakukan absen masuk terlebih dahulu. pada tombol hijau absen masuk');
+                return redirect()->back()->withInput();
+            }
+
             // Cek apakah pengguna sudah absen pada hari ini
             $today = now()->format('Y-m-d');
             $existingAbsen = AbsenPulang::where('user_id', $user->id)
