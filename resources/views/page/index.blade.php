@@ -120,7 +120,7 @@
                         <p class="text-muted">Absen Datang</p>
                     </li>
                     <li class="list-inline-item">
-                        <h4 class="mb-0">{{ $jumlahAbsenPulangSmp ?? '' }}</h4>
+                        <h4 class="mb-0"></h4>
                         <p class="text-muted">Absen Pulang</p>
                     </li>
                 </ul>
