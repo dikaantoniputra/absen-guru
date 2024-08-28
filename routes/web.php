@@ -78,9 +78,9 @@ Route::group(['middleware' => ['auth']], function () {
     });
 
          Route::group(['prefix' => 'kepala-sekolah', 'middleware' => 'role:kepala-sekolah'], function () {
-        Route::get('/', function () {
-            return view('page.index');
-        })->name('kepala.unit');
+ 
+
+        Route::get('/', [KepalaSekolahController::class, 'index'])->name('kepala.unit');
        
         Route::get('/absen-masuk-kepala-sekolah', [KepalaSekolahController::class, 'absen'])->name('absen.kepsek');
         Route::get('/absen-pulang-kepala-sekolah', [KepalaSekolahController::class, 'pulang'])->name('absen.kepsek.pulang');
