@@ -6,6 +6,7 @@ use App\Models\User;
 use App\Models\AbsenMasuk;
 use App\Models\AbsenPulang;
 use Illuminate\Http\Request;
+use Illuminate\Support\Carbon;
 use Illuminate\Routing\Controller;
 
 class GuruSekolahController extends Controller
@@ -18,6 +19,20 @@ class GuruSekolahController extends Controller
     public function index()
     {
         //
+        $userId = auth()->user()->id;
+     
+         // Ambil data absensi hanya untuk pengguna yang sedang login
+         // dan urutkan berdasarkan waktu dari yang terbaru
+         $absenMasuk = AbsenMasuk::where('user_id', $userId)
+                                 ->whereDate('created_at', Carbon::today())
+                                 ->get();
+
+          $absenPulang = AbsenPulang::where('user_id', $userId)
+                                 ->whereDate('created_at', Carbon::today())
+                                 ->get();
+
+        return view('page.index', compact('absenMasuk','absenPulang'));
+
     }
 
     /**

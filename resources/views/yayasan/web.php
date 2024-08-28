@@ -75,7 +75,6 @@ Route::group(['middleware' => ['auth']], function () {
 
         Route::get('/', [YayasanController::class, 'index'])->name('kepala.unit');
        
-       
         Route::get('/absen-masuk-kepala-sekolah', [KepalaSekolahController::class, 'absen'])->name('absen.kepsek');
         Route::get('/absen-pulang-kepala-sekolah', [KepalaSekolahController::class, 'pulang'])->name('absen.kepsek.pulang');
         Route::post('/absenmasukkepsek', [KepalaSekolahController::class, 'store'])->name('absenmasukkepsek');
@@ -89,7 +88,6 @@ Route::group(['middleware' => ['auth']], function () {
 
         Route::get('laporan-unit-tk', [KepalaSekolahController::class, 'laporanTk']);
        
-
 
     });
 

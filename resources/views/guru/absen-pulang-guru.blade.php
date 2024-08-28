@@ -9,6 +9,14 @@
 <link href="{{ asset('') }}assets/libs/datatables.net-responsive-bs5/css/responsive.bootstrap5.min.css" rel="stylesheet" type="text/css" />
 <link href="{{ asset('') }}assets/libs/datatables.net-buttons-bs5/css/buttons.bootstrap5.min.css" rel="stylesheet" type="text/css" />
 <link href="{{ asset('') }}assets/libs/datatables.net-select-bs5/css//select.bootstrap5.min.css" rel="stylesheet" type="text/css" />
+<!-- third party css end -->
+
+<!-- App css -->
+
+<link href="{{ asset('') }}assets/css/app.min.css" rel="stylesheet" type="text/css" id="app-style" />
+
+<!-- icons -->
+<link href="{{ asset('') }}assets/css/icons.min.css" rel="stylesheet" type="text/css" />
 @endpush
 
 @section('content')
@@ -159,6 +167,16 @@
 @endsection
 
 @push('after-script')
+
+<script src="{{ asset('') }}/assets/libs/jquery/jquery.min.js"></script>
+<script src="{{ asset('') }}/assets/libs/bootstrap/js/bootstrap.bundle.min.js"></script>
+<script src="{{ asset('') }}/assets/libs/simplebar/simplebar.min.js"></script>
+<script src="{{ asset('') }}/assets/libs/node-waves/waves.min.js"></script>
+<script src="{{ asset('') }}/assets/libs/waypoints/lib/jquery.waypoints.min.js"></script>
+<script src="{{ asset('') }}/assets/libs/jquery.counterup/jquery.counterup.min.js"></script>
+<script src="{{ asset('') }}/assets/libs/feather-icons/feather.min.js"></script>
+
+<!-- third party js -->
 <script src="{{ asset('') }}assets/libs/datatables.net/js/jquery.dataTables.min.js"></script>
 <script src="{{ asset('') }}assets/libs/datatables.net-bs5/js/dataTables.bootstrap5.min.js"></script>
 <script src="{{ asset('') }}assets/libs/datatables.net-responsive/js/dataTables.responsive.min.js"></script>
@@ -179,8 +197,4 @@
 
 <!-- App js -->
 <script src="{{ asset('') }}assets/js/app.min.js"></script>
-
-<script src="{{ asset('') }}assets/libs/jquery/jquery.min.js"></script>
-<script src="{{ asset('') }}assets/libs/bootstrap/js/bootstrap.bundle.min.js"></script>
-<script src="{{ asset('') }}assets/libs/simplebar/simplebar.min.js"></script>
 @endpush

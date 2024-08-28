@@ -77,7 +77,7 @@ Route::group(['middleware' => ['auth']], function () {
        
     });
 
-         Route::group(['prefix' => 'kepala-sekolah', 'middleware' => 'role:kepala-sekolah'], function () {
+     Route::group(['prefix' => 'kepala-sekolah', 'middleware' => 'role:kepala-sekolah'], function () {
  
 
         Route::get('/', [KepalaSekolahController::class, 'index'])->name('kepala.unit');
@@ -101,9 +101,10 @@ Route::group(['middleware' => ['auth']], function () {
     });
 
     Route::group(['prefix' => 'karyawan', 'middleware' => 'role:guru'], function () {
-        Route::get('/', function () {
-            return view('page.index');
-        })->name('guru.dashboard');
+        
+
+        Route::get('/', [GuruSekolahController::class, 'index'])->name('guru.dashboard');
+
         Route::get('/absen-masuk-karyawan-sekolah', [GuruSekolahController::class, 'absen'])->name('absen.guru');
         Route::get('/absen-pulang-karyawan-sekolah', [GuruSekolahController::class, 'pulang'])->name('absen.guru.pulang');
         Route::post('/absenmasukguru', [GuruSekolahController::class, 'store'])->name('absenmasukguru');

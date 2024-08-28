@@ -198,95 +198,95 @@
 
 <!-- end row -->
 
-<div class="row">
-   
+    <div class="row">
+    
 
-    <div class="col-xl-12">
-        <div class="card">
-            <div class="card-body">
-                
+        <div class="col-xl-12">
+            <div class="card">
+                <div class="card-body">
+                    
 
-                <h4 class="header-title mt-0 mb-3">Daftar Kehadiran Tercepat</h4>
-                @if(isset($usersHariIni) && $usersHariIni->isNotEmpty())
-                <div class="table-responsive">
-                    <table class="table table-hover mb-0">
-                        <thead>
-                            <tr>
+                    <h4 class="header-title mt-0 mb-3">Daftar Kehadiran Tercepat</h4>
+                    @if(isset($usersHariIni) && $usersHariIni->isNotEmpty())
+                    <div class="table-responsive">
+                        <table class="table table-hover mb-0">
+                            <thead>
                                 <tr>
-                                    <th>No</th>  
-                                    <th>Nama</th>  
-                                    <th>Jam</th>
-                                    <th>Unit</th>
-                                    <th>Guru</th>
-                                </tr>
-                            </tr>
-                        </thead>
-                        <tbody>
-                            @foreach ($usersHariIni as $absenPulang)
-                            @php
-                                    $days = [
-                                        'Sunday' => 'Minggu',
-                                        'Monday' => 'Senin',
-                                        'Tuesday' => 'Selasa',
-                                        'Wednesday' => 'Rabu',
-                                        'Thursday' => 'Kamis',
-                                        'Friday' => 'Jumat',
-                                        'Saturday' => 'Sabtu'
-                                    ];
-                                    $dayName = $days[$absenPulang->created_at->format('l')];
-                                @endphp
-                                <tr>
-                                    <td>{{ $loop->iteration }}</td>
-                                    <td>{{ $absenPulang->user->name }}</td>
-    
-                                    <td>{{ $absenPulang->created_at->format('H:i') }}</td>
-
-                                    
-                                    <td>{{ $absenPulang->user->kategori }}</td>
-
-                                    <td>
-                                        @if(isset($absenPulang->gambar))
-                                        <!-- Thumbnail Image -->
-                                        <img class="d-block img-fluid" src="{{ asset('gambar/' . $absenPulang->gambar) }}" alt="Gambar Absen" style="width: 30px; cursor: pointer;" data-bs-toggle="modal" data-bs-target="#imageModal{{ $absenPulang->id }}">
-    
-                                        <!-- Modal -->
-    
-                                        @endif
-    
-                                    </td>
-    
+                                    <tr>
+                                        <th>No</th>  
+                                        <th>Nama</th>  
+                                        <th>Jam</th>
+                                        <th>Unit</th>
+                                        <th>Guru</th>
                                     </tr>
-                                    <div class="modal fade" id="imageModal{{ $absenPulang->id }}" tabindex="-1" aria-labelledby="imageModalLabel" aria-hidden="true">
-                                        <div class="modal-dialog modal-dialog-centered">
-                                            <div class="modal-content">
-                                                <div class="modal-header">
-                                                    <h5 class="modal-title" id="imageModalLabel">Gambar Absen</h5>
-                                                    <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
-                                                </div>
-                                                <div class="modal-body">
-                                                    <img class="img-fluid" src="{{ asset('gambar/' . $absenPulang->gambar) }}" alt="Gambar Absen">
+                                </tr>
+                            </thead>
+                            <tbody>
+                                @foreach ($usersHariIni as $absenPulang)
+                                @php
+                                        $days = [
+                                            'Sunday' => 'Minggu',
+                                            'Monday' => 'Senin',
+                                            'Tuesday' => 'Selasa',
+                                            'Wednesday' => 'Rabu',
+                                            'Thursday' => 'Kamis',
+                                            'Friday' => 'Jumat',
+                                            'Saturday' => 'Sabtu'
+                                        ];
+                                        $dayName = $days[$absenPulang->created_at->format('l')];
+                                    @endphp
+                                    <tr>
+                                        <td>{{ $loop->iteration }}</td>
+                                        <td>{{ $absenPulang->user->name }}</td>
+        
+                                        <td>{{ $absenPulang->created_at->format('H:i') }}</td>
+
+                                        
+                                        <td>{{ $absenPulang->user->kategori }}</td>
+
+                                        <td>
+                                            @if(isset($absenPulang->gambar))
+                                            <!-- Thumbnail Image -->
+                                            <img class="d-block img-fluid" src="{{ asset('gambar/' . $absenPulang->gambar) }}" alt="Gambar Absen" style="width: 30px; cursor: pointer;" data-bs-toggle="modal" data-bs-target="#imageModal{{ $absenPulang->id }}">
+        
+                                            <!-- Modal -->
+        
+                                            @endif
+        
+                                        </td>
+        
+                                        </tr>
+                                        <div class="modal fade" id="imageModal{{ $absenPulang->id }}" tabindex="-1" aria-labelledby="imageModalLabel" aria-hidden="true">
+                                            <div class="modal-dialog modal-dialog-centered">
+                                                <div class="modal-content">
+                                                    <div class="modal-header">
+                                                        <h5 class="modal-title" id="imageModalLabel">Gambar Absen</h5>
+                                                        <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+                                                    </div>
+                                                    <div class="modal-body">
+                                                        <img class="img-fluid" src="{{ asset('gambar/' . $absenPulang->gambar) }}" alt="Gambar Absen">
+                                                    </div>
                                                 </div>
                                             </div>
                                         </div>
-                                    </div>
-                                    @empty
-                                    <tr>
-                                        <td colspan="5" class="text-center">Data Kosong</td>
-                                    </tr>
-                                @endforelse
+                                        @empty
+                                        <tr>
+                                            <td colspan="5" class="text-center">Data Kosong</td>
+                                        </tr>
+                                    @endforelse
 
-                        </tbody>
-                    </table>
+                            </tbody>
+                        </table>
+                    </div>
+                    @else
+                        <div class="text-center">Data Kosong</div>
+                    @endif
                 </div>
-                @else
-                    <div class="text-center">Data Kosong</div>
-                @endif
             </div>
-        </div>
 
-    </div><!-- end col -->
+        </div><!-- end col -->
 
-</div>
+    </div>
     @endif
 
     @if (auth()->user()->role == 'yayasan')
@@ -781,7 +781,197 @@
     
 
     @if (auth()->user()->role == 'guru')
-      <h2>Masih Diskusi Ingin Model Seperti Apa</h2>
+    
+  
+    <h1 class="pb-3">Hasil Absen Harian Karywan Pirngadi</h1>
+        <div class="row">
+            <div class="col-12">
+                <div class="card">
+                    <div class="card-body">
+                        <h4 class="mt-0 header-title">Lihat Absen Masuk </h4>
+                      
+                
+                            <table id="datatable-buttons" class="table table-striped table-bordered dt-responsive nowrap">
+                            <thead>
+                                <tr>
+                                    <th>No</th>  
+                                    <th>Nama</th>  
+                                    <th>Tgl</th>
+                                    <th>Bulan</th>
+                                    <th>Jam</th>
+                                    <th>Status</th>
+                                    <th>Guru</th>
+                                </tr>
+                            </thead>
+    
+    
+                            <tbody>
+                                @forelse ($absenMasuk as $absenMasuk)
+                                @php
+                                        $days = [
+                                            'Sunday' => 'Minggu',
+                                            'Monday' => 'Senin',
+                                            'Tuesday' => 'Selasa',
+                                            'Wednesday' => 'Rabu',
+                                            'Thursday' => 'Kamis',
+                                            'Friday' => 'Jumat',
+                                            'Saturday' => 'Sabtu'
+                                        ];
+                                        $dayName = $days[$absenMasuk->created_at->format('l')];
+                                    @endphp
+                                    <tr>
+                                        <td>{{ $loop->iteration }}</td>
+                                        <td>{{ $absenMasuk->user->name }}</td>
+                                        <td>{{ $dayName }}, Tgl - {{ $absenMasuk->created_at->format('d') }}</td>
+                                        <td>{{ $absenMasuk->created_at->format('M') }}</td>
+                                        
+                                        <td>{{ $absenMasuk->created_at->format('H:i') }}</td>
+    
+                                        <td>
+                                            @if ($absenMasuk->status == 0)
+                                                Masuk
+                                            @elseif($absenMasuk->status == 1)
+                                                Di Tolak
+                                            
+                                            @else
+                                            @endif
+                                        </td>
+                                       
+                                        <td>
+                                            @if(isset($absenMasuk->gambar))
+                                            <!-- Thumbnail Image -->
+                                            <img class="d-block img-fluid" src="{{ asset('gambar/' . $absenMasuk->gambar) }}" alt="Gambar Absen" style="width: 30px; cursor: pointer;" data-bs-toggle="modal" data-bs-target="#imageModal{{ $absenMasuk->id }}">
+        
+                                            <!-- Modal -->
+        
+                                            @endif
+        
+                                        </td>
+        
+                                        </tr>
+                                        <div class="modal fade" id="imageModal{{ $absenMasuk->id }}" tabindex="-1" aria-labelledby="imageModalLabel" aria-hidden="true">
+                                            <div class="modal-dialog modal-dialog-centered">
+                                                <div class="modal-content">
+                                                    <div class="modal-header">
+                                                        <h5 class="modal-title" id="imageModalLabel">Gambar Absen</h5>
+                                                        <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+                                                    </div>
+                                                    <div class="modal-body">
+                                                        <img class="img-fluid" src="{{ asset('gambar/' . $absenMasuk->gambar) }}" alt="Gambar Absen">
+                                                    </div>
+                                                </div>
+                                            </div>
+                                        </div>
+                                @empty
+                                    <div>
+                                        Data Kosong
+                                    </div>
+    
+                                 
+    
+                                @endforelse
+    
+                            </tbody>
+                        </table>
+                    </div>
+                </div>
+    
+            </div>
+        </div>
+    
+        <div class="row">
+            <div class="col-12">
+                <div class="card">
+                    <div class="card-body">
+                        <h4 class="mt-0 header-title">Lihat Absen Pulang </h4>
+                      
+                
+                            <table id="datatable-buttons2" class="table table-striped table-bordered dt-responsive nowrap">
+                            <thead>
+                                <tr>
+                                    <th>No</th>  
+                                    <th>Nama</th>  
+                                    <th>Tgl</th>
+                                    <th>Bulan</th>
+                                    <th>Jam</th>
+                                    <th>Status</th>
+                                    <th>Guru</th>
+                                </tr>
+                            </thead>
+    
+    
+                            <tbody>
+                                @forelse ($absenPulang as $absenPulang)
+                                @php
+                                        $days = [
+                                            'Sunday' => 'Minggu',
+                                            'Monday' => 'Senin',
+                                            'Tuesday' => 'Selasa',
+                                            'Wednesday' => 'Rabu',
+                                            'Thursday' => 'Kamis',
+                                            'Friday' => 'Jumat',
+                                            'Saturday' => 'Sabtu'
+                                        ];
+                                        $dayName = $days[$absenPulang->created_at->format('l')];
+                                    @endphp
+                                    <tr>
+                                        <td>{{ $loop->iteration }}</td>
+                                        <td>{{ $absenPulang->user->name }}</td>
+                                        <td>{{ $dayName }}, Tgl - {{ $absenPulang->created_at->format('d') }}</td>
+                                        <td>{{ $absenPulang->created_at->format('M') }}</td>
+                                        <td>{{ $absenPulang->created_at->format('H:i') }}</td>
+    
+                                        <td>
+                                            @if ($absenPulang->status == 0)
+                                                Masuk
+                                            @elseif($absenPulang->status == 1)
+                                                Di Tolak
+                                            
+                                            @else
+                                            @endif
+                                        </td>
+                                       
+                                        <td>
+                                            @if(isset($absenPulang->gambar))
+                                            <!-- Thumbnail Image -->
+                                            <img class="d-block img-fluid" src="{{ asset('gambar/' . $absenPulang->gambar) }}" alt="Gambar Absen" style="width: 30px; cursor: pointer;" data-bs-toggle="modal" data-bs-target="#imageModal{{ $absenPulang->id }}">
+        
+                                            <!-- Modal -->
+        
+                                            @endif
+        
+                                        </td>
+        
+                                        </tr>
+                                        <div class="modal fade" id="imageModal{{ $absenPulang->id }}" tabindex="-1" aria-labelledby="imageModalLabel" aria-hidden="true">
+                                            <div class="modal-dialog modal-dialog-centered">
+                                                <div class="modal-content">
+                                                    <div class="modal-header">
+                                                        <h5 class="modal-title" id="imageModalLabel">Gambar Absen</h5>
+                                                        <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+                                                    </div>
+                                                    <div class="modal-body">
+                                                        <img class="img-fluid" src="{{ asset('gambar/' . $absenPulang->gambar) }}" alt="Gambar Absen">
+                                                    </div>
+                                                </div>
+                                            </div>
+                                        </div>
+                                @empty
+                                    <div>
+                                        Data Kosong
+                                    </div>
+    
+                                 
+    
+                                @endforelse
+    
+                            </tbody>
+                        </table>
+                    </div>
+                </div>
+    
+            </div>
+        </div>
     @endif
     <!-- end row -->
 @endsection
