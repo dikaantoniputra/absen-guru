@@ -52,7 +52,7 @@
                         </div>
                     </li>
                         
-                    <li class="nav-item dropdown">
+                    {{-- <li class="nav-item dropdown">
                         <a class="nav-link dropdown-toggle arrow-none" href="#" id="topnav-layout" role="button"
                             data-bs-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
                             <i class="mdi mdi-card-bulleted-settings-outline me-1"></i> Laporan All<div class="arrow-down"></div>
@@ -63,7 +63,7 @@
                             <a href="{{ route('laporan.smp.admin') }}" class="dropdown-item">Unit SMP</a>
                             <a href="{{ route('laporan.sma.admin') }}" class="dropdown-item">Unit SMA</a>
                         </div>
-                    </li>
+                    </li> --}}
 
                     
                 </ul> <!-- end navbar-->
