@@ -23,13 +23,30 @@ class KepalaSekolahController extends Controller
             ->whereHas('user', function ($query) {
                 $query->where('kategori', 'TK');
             })
+            ->where('status', 0)
             ->count();
 
         $jumlahAbsenPulangtK = AbsenPulang::whereDate('created_at', Carbon::today())
             ->whereHas('user', function ($query) {
                 $query->where('kategori', 'TK');
             })
+            ->where('status', 0)
             ->count();
+
+            $jumlahAbsenMasukTKTolak = AbsenMasuk::whereDate('created_at', Carbon::today())
+            ->whereHas('user', function ($query) {
+                $query->where('kategori', 'TK');
+            })
+            ->where('status', 1)
+            ->count();
+
+           $jumlahAbsenPulangtKTolak = AbsenPulang::whereDate('created_at', Carbon::today())
+            ->whereHas('user', function ($query) {
+                $query->where('kategori', 'TK');
+            })
+            ->where('status', 1)
+            ->count();
+       
 
         $jumlahUserTK = User::where('kategori', 'TK')->count();
 
@@ -37,12 +54,29 @@ class KepalaSekolahController extends Controller
         ->whereHas('user', function ($query) {
             $query->where('kategori', 'SD');
         })
+        ->where('status', 0)
         ->count();
 
         $jumlahAbsenPulangSd = AbsenPulang::whereDate('created_at', Carbon::today())
             ->whereHas('user', function ($query) {
                 $query->where('kategori', 'SD');
             })
+            ->where('status', 0)
+            ->count();
+
+       
+            $jumlahAbsenMasukSdTolak = AbsenMasuk::whereDate('created_at', Carbon::today())
+            ->whereHas('user', function ($query) {
+                $query->where('kategori', 'SD');
+            })
+            ->where('status', 1)
+            ->count();
+
+           $jumlahAbsenPulangSdTolak = AbsenPulang::whereDate('created_at', Carbon::today())
+            ->whereHas('user', function ($query) {
+                $query->where('kategori', 'SD');
+            })
+            ->where('status', 1)
             ->count();
 
         $jumlahUserSD = User::where('kategori', 'SD')->count();
@@ -51,12 +85,29 @@ class KepalaSekolahController extends Controller
         ->whereHas('user', function ($query) {
             $query->where('kategori', 'SMP');
         })
+        ->where('status', 0)
         ->count();
 
         $jumlahAbsenPulangSmp = AbsenPulang::whereDate('created_at', Carbon::today())
             ->whereHas('user', function ($query) {
                 $query->where('kategori', 'SMP');
             })
+            ->where('status', 0)
+            ->count();
+       
+
+            $jumlahAbsenMasukSmpTolak = AbsenMasuk::whereDate('created_at', Carbon::today())
+            ->whereHas('user', function ($query) {
+                $query->where('kategori', 'SMP');
+            })
+            ->where('status', 1)
+            ->count();
+
+           $jumlahAbsenPulangSmpTolak = AbsenPulang::whereDate('created_at', Carbon::today())
+            ->whereHas('user', function ($query) {
+                $query->where('kategori', 'SMP');
+            })
+            ->where('status', 1)
             ->count();
 
         $jumlahUserSMP = User::where('kategori', 'SMP')->count();
@@ -65,23 +116,50 @@ class KepalaSekolahController extends Controller
         ->whereHas('user', function ($query) {
             $query->where('kategori', 'SMA');
         })
+        ->where('status', 0)
         ->count();
 
         $jumlahAbsenPulangSma = AbsenPulang::whereDate('created_at', Carbon::today())
             ->whereHas('user', function ($query) {
                 $query->where('kategori', 'SMA');
             })
+            ->where('status', 0)
+            ->count();
+       
+            $jumlahAbsenMasukSmaTolak = AbsenMasuk::whereDate('created_at', Carbon::today())
+            ->whereHas('user', function ($query) {
+                $query->where('kategori', 'SMA');
+            })
+            ->where('status', 1)
+            ->count();
+
+           $jumlahAbsenPulangSmaTolak = AbsenPulang::whereDate('created_at', Carbon::today())
+            ->whereHas('user', function ($query) {
+                $query->where('kategori', 'SMA');
+            })
+            ->where('status', 1)
             ->count();
 
         $jumlahUserSMA = User::where('kategori', 'SMA')->count();
 
-        $hariIni = Carbon::today();
+        $hariIni = date('Y-m-d');
 
-    // Query to get today's attendance for the 'TK' category
+        // Mendapatkan semua user yang datang pada hari ini
+        $kategori = auth()->user()->kategori;
+        $userId = auth()->user()->id;
+        
+        // Ambil data absensi berdasarkan kategori pengguna yang sedang login, tetapi tidak termasuk pengguna yang sedang login
+        $usersHariIni = AbsenMasuk::whereHas('user', function ($query) use ($kategori, $userId) {
+            $query->where('kategori', $kategori)
+                  ->where('id', '!=', $userId); // Kondisi untuk mengecualikan pengguna yang sedang login
+        })->whereDate('created_at', today()) // Kondisi untuk hanya mengambil data hari ini
+          ->get();
         
 
-        return view('page.index', compact('jumlahAbsenMasukTK', 'jumlahAbsenPulangtK', 'jumlahUserTK', 'jumlahAbsenMasukSd', 'jumlahAbsenPulangSd', 'jumlahUserSD', 'jumlahAbsenMasukSmp', 'jumlahAbsenPulangSmp', 'jumlahUserSMP', 'jumlahAbsenMasukSma', 'jumlahAbsenPulangSma', 'jumlahUserSMA'));
 
+        return view('page.index', compact('jumlahAbsenMasukTK','jumlahAbsenPulangtK','jumlahUserTK','jumlahAbsenMasukSd','jumlahAbsenPulangSd','jumlahUserSD','jumlahAbsenMasukSmp','jumlahAbsenPulangSmp','jumlahUserSMP'
+                                          ,'jumlahAbsenMasukSma','jumlahAbsenPulangSma','jumlahUserSMA','usersHariIni','jumlahAbsenMasukTKTolak','jumlahAbsenPulangtKTolak',
+                                       'jumlahAbsenMasukSdTolak','jumlahAbsenPulangSdTolak','jumlahAbsenMasukSmpTolak','jumlahAbsenPulangSmpTolak','jumlahAbsenMasukSmaTolak','jumlahAbsenPulangSmaTolak','usersHariIni'));
     }
 
     /**
