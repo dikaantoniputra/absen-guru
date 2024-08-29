@@ -166,7 +166,7 @@
                 
                     <ul class="list-inline">
                         <li class="list-inline-item me-4">
-                            <h4 class="mb-0">{{ $jumlahAbsenMasukSma  ??'' }}</h4>
+                            <h4 class="mb-0">{{ $jumlahAbsenMasukSma ??'' }}</h4>
                             <p class="text-muted">Absen Datang</p>
                         </li>
                         <li class="list-inline-item">
@@ -193,10 +193,7 @@
             
         </div><!-- end col-->
     </div>
-    <!-- end row -->
-
-
-<!-- end row -->
+   
 
     <div class="row">
     
@@ -207,7 +204,7 @@
                     
 
                     <h4 class="header-title mt-0 mb-3">Daftar Kehadiran Tercepat</h4>
-                    @if(isset($usersHariIni) && $usersHariIni->isNotEmpty())
+
                     <div class="table-responsive">
                         <table class="table table-hover mb-0">
                             <thead>
@@ -222,7 +219,7 @@
                                 </tr>
                             </thead>
                             <tbody>
-                                @foreach ($usersHariIni as $absenPulang)
+                                @forelse ($usersHariIni as $absenPulang)
                                 @php
                                         $days = [
                                             'Sunday' => 'Minggu',
@@ -240,7 +237,7 @@
                                         <td>{{ $absenPulang->user->name }}</td>
         
                                         <td>{{ $absenPulang->created_at->format('H:i') }}</td>
-
+    
                                         
                                         <td>{{ $absenPulang->user->kategori }}</td>
 
@@ -269,24 +266,25 @@
                                                 </div>
                                             </div>
                                         </div>
-                                        @empty
-                                        <tr>
-                                            <td colspan="5" class="text-center">Data Kosong</td>
-                                        </tr>
-                                    @endforelse
-
+                                @empty
+                                    <div>
+                                        Data Kosong
+                                    </div>
+    
+                                
+    
+                                @endforelse
+    
                             </tbody>
                         </table>
                     </div>
-                    @else
-                        <div class="text-center">Data Kosong</div>
-                    @endif
                 </div>
             </div>
 
         </div><!-- end col -->
 
     </div>
+    
     @endif
 
     @if (auth()->user()->role == 'yayasan')
