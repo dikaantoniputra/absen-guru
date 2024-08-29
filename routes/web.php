@@ -6,6 +6,7 @@ use App\Http\Controllers\AuthController;
 use App\Http\Controllers\UserController;
 use App\Http\Controllers\AbsenMasukController;
 use App\Http\Controllers\AbsenPulangController;
+use App\Http\Controllers\AdminController;
 use App\Http\Controllers\GuruSekolahController;
 use App\Http\Controllers\KepalaSekolahController;
 use App\Http\Controllers\YayasanController;
@@ -44,17 +45,18 @@ Route::group(['middleware' => ['auth']], function () {
 
     // Rute umum untuk admin dan freelancer
     Route::group(['prefix' => 'admin', 'middleware' => 'role:admin'], function () {
-        Route::get('/', function () {
-            return view('page.index');
-        })->name('admin.dashboard');
+       
+
+        Route::get('/', [AdminController::class, 'index'])->name('admin.dashboard');
+
         Route::resource('user', UserController::class);
         Route::resource('absenmasuk', AbsenMasukController::class);
         Route::resource('absenpulang', AbsenPulangController::class);
 
-        Route::get('absen-harian-tk', [YayasanController::class, 'hariantk'])->name('admin.tk.harian');
-        Route::get('absen-harian-sd', [YayasanController::class, 'hariansd'])->name('admin.sd.harian');
-        Route::get('absen-harian-smp', [YayasanController::class, 'hariansmp'])->name('admin.smp.harian');
-        Route::get('absen-harian-sma', [YayasanController::class, 'hariansma'])->name('admin.sma.harian');
+        Route::get('absen-harian-tk', [AdminController::class, 'hariantk'])->name('admin.tk.harian');
+        Route::get('absen-harian-sd', [AdminController::class, 'hariansd'])->name('admin.sd.harian');
+        Route::get('absen-harian-smp', [AdminController::class, 'hariansmp'])->name('admin.smp.harian');
+        Route::get('absen-harian-sma', [AdminController::class, 'hariansma'])->name('admin.sma.harian');
        
 
        

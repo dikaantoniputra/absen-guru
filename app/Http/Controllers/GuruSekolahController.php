@@ -58,11 +58,10 @@ class GuruSekolahController extends Controller
 
     public function pulangkaryawan()
     {
-        // Ambil kategori dari pengguna yang sedang login
+        
         $userId = auth()->user()->id;
      
-        // Ambil data absensi hanya untuk pengguna yang sedang login
-        // dan urutkan berdasarkan waktu dari yang terbaru
+       
         $absenPulang = AbsenPulang::where('user_id', $userId)
                                 ->orderBy('created_at', 'desc')
                                 ->get();

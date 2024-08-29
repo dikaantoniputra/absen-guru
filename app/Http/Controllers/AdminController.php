@@ -2,6 +2,7 @@
 
 namespace App\Http\Controllers;
 
+use App\Models\User;
 use App\Models\AbsenMasuk;
 use App\Models\AbsenPulang;
 use Illuminate\Http\Request;
@@ -15,6 +16,78 @@ class AdminController extends Controller
      *
      * @return \Illuminate\Http\Response
      */
+
+     public function index()
+     {
+         
+         $jumlahAbsenMasukTK = AbsenMasuk::whereDate('created_at', Carbon::today())
+             ->whereHas('user', function ($query) {
+                 $query->where('kategori', 'TK');
+             })
+             ->count();
+ 
+         $jumlahAbsenPulangtK = AbsenPulang::whereDate('created_at', Carbon::today())
+             ->whereHas('user', function ($query) {
+                 $query->where('kategori', 'TK');
+             })
+             ->count();
+ 
+         $jumlahUserTK = User::where('kategori', 'TK')->count();
+ 
+         $jumlahAbsenMasukSd = AbsenMasuk::whereDate('created_at', Carbon::today())
+         ->whereHas('user', function ($query) {
+             $query->where('kategori', 'SD');
+         })
+         ->count();
+ 
+         $jumlahAbsenPulangSd = AbsenPulang::whereDate('created_at', Carbon::today())
+             ->whereHas('user', function ($query) {
+                 $query->where('kategori', 'SD');
+             })
+             ->count();
+ 
+         $jumlahUserSD = User::where('kategori', 'SD')->count();
+ 
+         $jumlahAbsenMasukSmp = AbsenMasuk::whereDate('created_at', Carbon::today())
+         ->whereHas('user', function ($query) {
+             $query->where('kategori', 'SMP');
+         })
+         ->count();
+ 
+         $jumlahAbsenPulangSmp = AbsenPulang::whereDate('created_at', Carbon::today())
+             ->whereHas('user', function ($query) {
+                 $query->where('kategori', 'SMP');
+             })
+             ->count();
+ 
+         $jumlahUserSMP = User::where('kategori', 'SMP')->count();
+ 
+         $jumlahAbsenMasukSma = AbsenMasuk::whereDate('created_at', Carbon::today())
+         ->whereHas('user', function ($query) {
+             $query->where('kategori', 'SMA');
+         })
+         ->count();
+ 
+         $jumlahAbsenPulangSma = AbsenPulang::whereDate('created_at', Carbon::today())
+             ->whereHas('user', function ($query) {
+                 $query->where('kategori', 'SMA');
+             })
+             ->count();
+ 
+         $jumlahUserSMA = User::where('kategori', 'SMA')->count();
+ 
+         $hariIni = date('Y-m-d');
+ 
+         // Mendapatkan semua user yang datang pada hari ini
+         $usersHariIni = AbsenMasuk::whereDate('created_at', $hariIni)
+             ->orderBy('created_at', 'asc')
+             ->get();
+ 
+ 
+         return view('page.index', compact('jumlahAbsenMasukTK','jumlahAbsenPulangtK','jumlahUserTK','jumlahAbsenMasukSd','jumlahAbsenPulangSd','jumlahUserSD','jumlahAbsenMasukSmp','jumlahAbsenPulangSmp','jumlahUserSMP'
+                                           ,'jumlahAbsenMasukSma','jumlahAbsenPulangSma','jumlahUserSMA','usersHariIni'));
+     }
+     
 
      public function hariantk()
     {
@@ -88,10 +161,7 @@ class AdminController extends Controller
         return view('page.harian.absen-masuk-sma', compact('absenPulang','absenMasuk'));
     }
     
-    public function index()
-    {
-        //
-    }
+
 
     /**
      * Show the form for creating a new resource.
