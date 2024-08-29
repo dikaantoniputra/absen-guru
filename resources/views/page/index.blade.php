@@ -37,10 +37,23 @@
                             <h4 class="mb-0">{{ $jumlahAbsenMasukTK ?? '' }}</h4>
                             <p class="text-muted">Absen Datang</p>
                         </li>
-                        <li class="list-inline-item">
+                        <li class="list-inline-item ">
                             <h4 class="mb-0">{{ $jumlahAbsenPulangtK ?? ''}}</h4>
                             <p class="text-muted">Absen Pulang</p>
                         </li>
+                       
+                    </ul>
+
+                    <ul class="list-inline">
+                        <li class="list-inline-item me-4">
+                            <h4 class="mb-0 text-danger">{{ $jumlahAbsenMasukTKTolak ?? '' }}</h4>
+                            <p class="text-muted text-danger">Absen Datang Invalid</p>
+                        </li>
+                        <li class="list-inline-item ">
+                            <h4 class="mb-0 text-danger">{{ $jumlahAbsenPulangtKTolak ?? ''}}</h4>
+                            <p class="text-muted text-danger">Absen Pulang Invalid</p>
+                        </li>
+                       
                     </ul>
 
                     <div class="project-members mb-2">
@@ -89,6 +102,18 @@
                     </li>
                 </ul>
 
+                <ul class="list-inline">
+                    <li class="list-inline-item me-4">
+                        <h4 class="mb-0 text-danger">{{ $jumlahAbsenMasukSdTolak ?? '' }}</h4>
+                        <p class="text-muted text-danger">Absen Datang Invalid</p>
+                    </li>
+                    <li class="list-inline-item ">
+                        <h4 class="mb-0 text-danger">{{ $jumlahAbsenPulangSdTolak ?? ''}}</h4>
+                        <p class="text-muted text-danger">Absen Pulang Invalid</p>
+                    </li>
+                   
+                </ul>
+
                 <div class="project-members mb-2">
                     <h5 class="float-start me-3">Total Pegawai : {{ $jumlahUserSD }}</h5>       
                 </div>
@@ -132,6 +157,18 @@
                         <h4 class="mb-0">{{ $jumlahAbsenPulangSmp ?? '' }}</h4>
                         <p class="text-muted">Absen Pulang</p>
                     </li>
+                </ul>
+
+                <ul class="list-inline">
+                    <li class="list-inline-item me-4">
+                        <h4 class="mb-0 text-danger">{{ $jumlahAbsenMasukSmpTolak ?? '' }}</h4>
+                        <p class="text-muted text-danger">Absen Datang Invalid</p>
+                    </li>
+                    <li class="list-inline-item ">
+                        <h4 class="mb-0 text-danger">{{ $jumlahAbsenPulangSmpTolak ?? ''}}</h4>
+                        <p class="text-muted text-danger">Absen Pulang Invalid</p>
+                    </li>
+                   
                 </ul>
 
                 <div class="project-members mb-2">
@@ -184,6 +221,18 @@
                         </li>
                     </ul>
 
+                    <ul class="list-inline">
+                        <li class="list-inline-item me-4">
+                            <h4 class="mb-0 text-danger">{{ $jumlahAbsenMasukSmaTolak ?? '' }}</h4>
+                            <p class="text-muted text-danger">Absen Datang Invalid</p>
+                        </li>
+                        <li class="list-inline-item ">
+                            <h4 class="mb-0 text-danger">{{ $jumlahAbsenPulangSmaTolak ?? ''}}</h4>
+                            <p class="text-muted text-danger">Absen Pulang Invalid</p>
+                        </li>
+                       
+                    </ul>
+
                     <div class="project-members mb-2">
                         <h5 class="float-start me-3">Total Pegawai : {{ $jumlahUserSMA }}</h5>
                         
@@ -205,100 +254,86 @@
    
 
     <div class="row">
-    
-
-        <div class="col-xl-12">
+        <div class="col-12">
             <div class="card">
                 <div class="card-body">
-                    
-
-                    <h4 class="header-title mt-0 mb-3">Daftar Kehadiran Tercepat</h4>
-
-                    <div class="table-responsive">
-                        <table class="table table-hover mb-0">
-                            <thead>
-                                <tr>
-                                    <tr>
-                                        <th>No</th>  
-                                        <th>Nama</th>  
-                                        <th>Jam</th>
-                                        <th>Unit</th>
-                                        <th>Guru</th>
-                                    </tr>
-                                </tr>
-                            </thead>
-                            <tbody>
-                                @forelse ($usersHariIni as $absenPulang)
+                    <h4 class="mt-0 header-title">Lihat Absen Tercepat</h4>
+                    <table id="datatable-buttons" class="table table-striped table-bordered dt-responsive nowrap">
+                        <thead>
+                            <tr>
+                                <th>No</th>  
+                                <th>Nama</th>  
+                                <th>Unit</th>  
+                                <th>Jam</th>
+                                <th>Status</th>
+                                <th>Foto</th>
+                                <th>Keterangan</th>
+                            </tr>
+                        </thead>
+                        <tbody>
+                            @forelse ($usersHariIni as $usersHariIni)
                                 @php
-                                        $days = [
-                                            'Sunday' => 'Minggu',
-                                            'Monday' => 'Senin',
-                                            'Tuesday' => 'Selasa',
-                                            'Wednesday' => 'Rabu',
-                                            'Thursday' => 'Kamis',
-                                            'Friday' => 'Jumat',
-                                            'Saturday' => 'Sabtu'
-                                        ];
-                                        $dayName = $days[$absenPulang->created_at->format('l')];
-                                    @endphp
-                                    <tr>
-                                        <td>{{ $loop->iteration }}</td>
-                                        <td>{{ $absenPulang->user->name }}</td>
-        
-                                        <td>{{ $absenPulang->created_at->format('H:i') }}</td>
-    
-                                        
-                                        <td>{{ $absenPulang->user->kategori }}</td>
-
-                                        <td>
-                                            @if(isset($absenPulang->gambar))
+                                    $days = [
+                                        'Sunday' => 'Minggu',
+                                        'Monday' => 'Senin',
+                                        'Tuesday' => 'Selasa',
+                                        'Wednesday' => 'Rabu',
+                                        'Thursday' => 'Kamis',
+                                        'Friday' => 'Jumat',
+                                        'Saturday' => 'Sabtu'
+                                    ];
+                                    $dayName = $days[$usersHariIni->created_at->format('l')];
+                                @endphp
+                                <tr @if($usersHariIni->status == 1) style="background-color: #f8d7da;" @endif>
+                                    <td>{{ $loop->iteration }}</td>
+                                    <td>{{ $usersHariIni->user->name }}</td>
+                                    <td>{{ $usersHariIni->user->kategori }}</td>
+                                    <td>{{ $usersHariIni->created_at->format('H:i') }}</td>
+                                    <td>
+                                        @if ($usersHariIni->status == 0)
+                                            Masuk
+                                        @elseif($usersHariIni->status == 1)
+                                            Di Tolak
+                                        @endif
+                                    </td>
+                                    <td>
+                                        @if(isset($usersHariIni->gambar))
                                             <!-- Thumbnail Image -->
-                                            <img class="d-block img-fluid" src="{{ asset('gambar/' . $absenPulang->gambar) }}" alt="Gambar Absen" style="width: 30px; cursor: pointer;" data-bs-toggle="modal" data-bs-target="#imageModal{{ $absenPulang->id }}">
-        
+                                            <img class="d-block img-fluid" src="{{ asset('gambar/' . $usersHariIni->gambar) }}" alt="Gambar Absen" style="width: 30px; cursor: pointer;" data-bs-toggle="modal" data-bs-target="#imageModal{{ $usersHariIni->id }}">
                                             <!-- Modal -->
-        
-                                            @endif
-        
-                                        </td>
-        
-                                        </tr>
-                                        <div class="modal fade" id="imageModal{{ $absenPulang->id }}" tabindex="-1" aria-labelledby="imageModalLabel" aria-hidden="true">
-                                            <div class="modal-dialog modal-dialog-centered">
-                                                <div class="modal-content">
-                                                    <div class="modal-header">
-                                                        <h5 class="modal-title" id="imageModalLabel">Gambar Absen</h5>
-                                                        <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
-                                                    </div>
-                                                    <div class="modal-body">
-                                                        <img class="img-fluid" src="{{ asset('gambar/' . $absenPulang->gambar) }}" alt="Gambar Absen">
-                                                    </div>
-                                                </div>
+                                        @endif
+                                    </td>
+                                    <td>{{ $usersHariIni->keterangan ?? 'Valid' }}</td>
+                                </tr>
+                                <div class="modal fade" id="imageModal{{ $usersHariIni->id }}" tabindex="-1" aria-labelledby="imageModalLabel" aria-hidden="true">
+                                    <div class="modal-dialog modal-dialog-centered">
+                                        <div class="modal-content">
+                                            <div class="modal-header">
+                                                <h5 class="modal-title" id="imageModalLabel">Gambar Absen</h5>
+                                                <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+                                            </div>
+                                            <div class="modal-body">
+                                                <img class="img-fluid" src="{{ asset('gambar/' . $usersHariIni->gambar) }}" alt="Gambar Absen">
                                             </div>
                                         </div>
-                                @empty
-                                    <div>
-                                        Data Kosong
                                     </div>
-    
-                                
-    
-                                @endforelse
-    
-                            </tbody>
-                        </table>
-                    </div>
+                                </div>
+                            @empty
+                                <tr>
+                                    <td colspan="6">Data Kosong</td>
+                                </tr>
+                            @endforelse
+                        </tbody>
+                    </table>
                 </div>
             </div>
-
-        </div><!-- end col -->
-
+        </div>
     </div>
+    
 
     @endif
 
     @if (auth()->user()->role == 'yayasan')
-
-
         <div class="row">
             <div class="col-xl-3">
                 <div class="card">
@@ -324,10 +359,23 @@
                                 <h4 class="mb-0">{{ $jumlahAbsenMasukTK ?? '' }}</h4>
                                 <p class="text-muted">Absen Datang</p>
                             </li>
-                            <li class="list-inline-item">
+                            <li class="list-inline-item ">
                                 <h4 class="mb-0">{{ $jumlahAbsenPulangtK ?? ''}}</h4>
                                 <p class="text-muted">Absen Pulang</p>
                             </li>
+                        
+                        </ul>
+
+                        <ul class="list-inline">
+                            <li class="list-inline-item me-4">
+                                <h4 class="mb-0 text-danger">{{ $jumlahAbsenMasukTKTolak ?? '' }}</h4>
+                                <p class="text-muted text-danger">Absen Datang Invalid</p>
+                            </li>
+                            <li class="list-inline-item ">
+                                <h4 class="mb-0 text-danger">{{ $jumlahAbsenPulangtKTolak ?? ''}}</h4>
+                                <p class="text-muted text-danger">Absen Pulang Invalid</p>
+                            </li>
+                        
                         </ul>
 
                         <div class="project-members mb-2">
@@ -376,6 +424,18 @@
                         </li>
                     </ul>
 
+                    <ul class="list-inline">
+                        <li class="list-inline-item me-4">
+                            <h4 class="mb-0 text-danger">{{ $jumlahAbsenMasukSdTolak ?? '' }}</h4>
+                            <p class="text-muted text-danger">Absen Datang Invalid</p>
+                        </li>
+                        <li class="list-inline-item ">
+                            <h4 class="mb-0 text-danger">{{ $jumlahAbsenPulangSdTolak ?? ''}}</h4>
+                            <p class="text-muted text-danger">Absen Pulang Invalid</p>
+                        </li>
+                    
+                    </ul>
+
                     <div class="project-members mb-2">
                         <h5 class="float-start me-3">Total Pegawai : {{ $jumlahUserSD }}</h5>       
                     </div>
@@ -421,9 +481,21 @@
                         </li>
                     </ul>
 
+                    <ul class="list-inline">
+                        <li class="list-inline-item me-4">
+                            <h4 class="mb-0 text-danger">{{ $jumlahAbsenMasukSmpTolak ?? '' }}</h4>
+                            <p class="text-muted text-danger">Absen Datang Invalid</p>
+                        </li>
+                        <li class="list-inline-item ">
+                            <h4 class="mb-0 text-danger">{{ $jumlahAbsenPulangSmpTolak ?? ''}}</h4>
+                            <p class="text-muted text-danger">Absen Pulang Invalid</p>
+                        </li>
+                    
+                    </ul>
+
                     <div class="project-members mb-2">
                         <h5 class="float-start me-3">Total Pegawai : {{ $jumlahUserSMP }}</h5>
-                      
+                    
                     </div>
                     
 
@@ -435,7 +507,7 @@
                         </div><!-- /.progress-bar .progress-bar-danger -->
                     </div><!-- /.progress .no-rounded -->
 
-                  
+                
 
                 </div>
                 </div>
@@ -471,6 +543,18 @@
                             </li>
                         </ul>
 
+                        <ul class="list-inline">
+                            <li class="list-inline-item me-4">
+                                <h4 class="mb-0 text-danger">{{ $jumlahAbsenMasukSmaTolak ?? '' }}</h4>
+                                <p class="text-muted text-danger">Absen Datang Invalid</p>
+                            </li>
+                            <li class="list-inline-item ">
+                                <h4 class="mb-0 text-danger">{{ $jumlahAbsenPulangSmaTolak ?? ''}}</h4>
+                                <p class="text-muted text-danger">Absen Pulang Invalid</p>
+                            </li>
+                        
+                        </ul>
+
                         <div class="project-members mb-2">
                             <h5 class="float-start me-3">Total Pegawai : {{ $jumlahUserSMA }}</h5>
                             
@@ -489,98 +573,84 @@
                 
             </div><!-- end col-->
         </div>
-       
-
+    
         <div class="row">
-        
-
-            <div class="col-xl-12">
+            <div class="col-12">
                 <div class="card">
                     <div class="card-body">
-                        
-
-                        <h4 class="header-title mt-0 mb-3">Daftar Kehadiran Tercepat</h4>
-
-                        <div class="table-responsive">
-                            <table class="table table-hover mb-0">
-                                <thead>
-                                    <tr>
-                                        <tr>
-                                            <th>No</th>  
-                                            <th>Nama</th>  
-                                            <th>Jam</th>
-                                            <th>Unit</th>
-                                            <th>Guru</th>
-                                        </tr>
-                                    </tr>
-                                </thead>
-                                <tbody>
-                                    @forelse ($usersHariIni as $absenPulang)
+                        <h4 class="mt-0 header-title">Lihat Absen Tercepat</h4>
+                        <table id="datatable-buttons" class="table table-striped table-bordered dt-responsive nowrap">
+                            <thead>
+                                <tr>
+                                    <th>No</th>  
+                                    <th>Nama</th>  
+                                    <th>Unit</th>  
+                                    <th>Jam</th>
+                                    <th>Status</th>
+                                    <th>Foto</th>
+                                    <th>Keterangan</th>
+                                </tr>
+                            </thead>
+                            <tbody>
+                                @forelse ($usersHariIni as $usersHariIni)
                                     @php
-                                            $days = [
-                                                'Sunday' => 'Minggu',
-                                                'Monday' => 'Senin',
-                                                'Tuesday' => 'Selasa',
-                                                'Wednesday' => 'Rabu',
-                                                'Thursday' => 'Kamis',
-                                                'Friday' => 'Jumat',
-                                                'Saturday' => 'Sabtu'
-                                            ];
-                                            $dayName = $days[$absenPulang->created_at->format('l')];
-                                        @endphp
-                                        <tr>
-                                            <td>{{ $loop->iteration }}</td>
-                                            <td>{{ $absenPulang->user->name }}</td>
-            
-                                            <td>{{ $absenPulang->created_at->format('H:i') }}</td>
-        
-                                            
-                                            <td>{{ $absenPulang->user->kategori }}</td>
-
-                                            <td>
-                                                @if(isset($absenPulang->gambar))
+                                        $days = [
+                                            'Sunday' => 'Minggu',
+                                            'Monday' => 'Senin',
+                                            'Tuesday' => 'Selasa',
+                                            'Wednesday' => 'Rabu',
+                                            'Thursday' => 'Kamis',
+                                            'Friday' => 'Jumat',
+                                            'Saturday' => 'Sabtu'
+                                        ];
+                                        $dayName = $days[$usersHariIni->created_at->format('l')];
+                                    @endphp
+                                    <tr @if($usersHariIni->status == 1) style="background-color: #f8d7da;" @endif>
+                                        <td>{{ $loop->iteration }}</td>
+                                        <td>{{ $usersHariIni->user->name }}</td>
+                                        <td>{{ $usersHariIni->user->kategori }}</td>
+                                        <td>{{ $usersHariIni->created_at->format('H:i') }}</td>
+                                        <td>
+                                            @if ($usersHariIni->status == 0)
+                                                Masuk
+                                            @elseif($usersHariIni->status == 1)
+                                                Di Tolak
+                                            @endif
+                                        </td>
+                                        <td>
+                                            @if(isset($usersHariIni->gambar))
                                                 <!-- Thumbnail Image -->
-                                                <img class="d-block img-fluid" src="{{ asset('gambar/' . $absenPulang->gambar) }}" alt="Gambar Absen" style="width: 30px; cursor: pointer;" data-bs-toggle="modal" data-bs-target="#imageModal{{ $absenPulang->id }}">
-            
+                                                <img class="d-block img-fluid" src="{{ asset('gambar/' . $usersHariIni->gambar) }}" alt="Gambar Absen" style="width: 30px; cursor: pointer;" data-bs-toggle="modal" data-bs-target="#imageModal{{ $usersHariIni->id }}">
                                                 <!-- Modal -->
-            
-                                                @endif
-            
-                                            </td>
-            
-                                            </tr>
-                                            <div class="modal fade" id="imageModal{{ $absenPulang->id }}" tabindex="-1" aria-labelledby="imageModalLabel" aria-hidden="true">
-                                                <div class="modal-dialog modal-dialog-centered">
-                                                    <div class="modal-content">
-                                                        <div class="modal-header">
-                                                            <h5 class="modal-title" id="imageModalLabel">Gambar Absen</h5>
-                                                            <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
-                                                        </div>
-                                                        <div class="modal-body">
-                                                            <img class="img-fluid" src="{{ asset('gambar/' . $absenPulang->gambar) }}" alt="Gambar Absen">
-                                                        </div>
-                                                    </div>
+                                            @endif
+                                        </td>
+                                        <td>{{ $usersHariIni->keterangan ?? 'Valid' }}</td>
+                                    </tr>
+                                    <div class="modal fade" id="imageModal{{ $usersHariIni->id }}" tabindex="-1" aria-labelledby="imageModalLabel" aria-hidden="true">
+                                        <div class="modal-dialog modal-dialog-centered">
+                                            <div class="modal-content">
+                                                <div class="modal-header">
+                                                    <h5 class="modal-title" id="imageModalLabel">Gambar Absen</h5>
+                                                    <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+                                                </div>
+                                                <div class="modal-body">
+                                                    <img class="img-fluid" src="{{ asset('gambar/' . $usersHariIni->gambar) }}" alt="Gambar Absen">
                                                 </div>
                                             </div>
-                                    @empty
-                                        <div>
-                                            Data Kosong
                                         </div>
-        
-                                    
-        
-                                    @endforelse
-        
-                                </tbody>
-                            </table>
-                        </div>
+                                    </div>
+                                @empty
+                                    <tr>
+                                        <td colspan="6">Data Kosong</td>
+                                    </tr>
+                                @endforelse
+                            </tbody>
+                        </table>
                     </div>
                 </div>
-
-            </div><!-- end col -->
-
+            </div>
         </div>
-@endif
+    @endif
 
     @if (auth()->user()->role == 'kepala-sekolah')
     <div class="row">
@@ -984,4 +1054,43 @@
 @endsection
 
 @push('after-script')
+
+<script src="{{ asset('') }}assets/libs/jquery/jquery.min.js"></script>
+<script src="{{ asset('') }}assets/libs/bootstrap/js/bootstrap.bundle.min.js"></script>
+<script src="{{ asset('') }}assets/libs/simplebar/simplebar.min.js"></script>
+
+    <script src="{{ asset('') }}assets/libs/jquery/jquery.min.js"></script>
+    <script src="{{ asset('') }}assets/libs/bootstrap/js/bootstrap.bundle.min.js"></script>
+    <script src="{{ asset('') }}assets/libs/simplebar/simplebar.min.js"></script>
+    <script src="{{ asset('') }}assets/libs/node-waves/waves.min.js"></script>
+    <script src="{{ asset('') }}assets/libs/waypoints/lib/jquery.waypoints.min.js"></script>
+    <script src="{{ asset('') }}assets/libs/jquery.counterup/jquery.counterup.min.js"></script>
+    <script src="{{ asset('') }}assets/libs/feather-icons/feather.min.js"></script>
+
+
+
+
+<script src="{{ asset('') }}assets/libs/datatables.net/js/jquery.dataTables.min.js"></script>
+<script src="{{ asset('') }}assets/libs/datatables.net-bs5/js/dataTables.bootstrap5.min.js"></script>
+<script src="{{ asset('') }}assets/libs/datatables.net-responsive/js/dataTables.responsive.min.js"></script>
+<script src="{{ asset('') }}assets/libs/datatables.net-responsive-bs5/js/responsive.bootstrap5.min.js"></script>
+<script src="{{ asset('') }}assets/libs/datatables.net-buttons/js/dataTables.buttons.min.js"></script>
+<script src="{{ asset('') }}assets/libs/datatables.net-buttons-bs5/js/buttons.bootstrap5.min.js"></script>
+<script src="{{ asset('') }}assets/libs/datatables.net-buttons/js/buttons.html5.min.js"></script>
+<script src="{{ asset('') }}assets/libs/datatables.net-buttons/js/buttons.flash.min.js"></script>
+<script src="{{ asset('') }}assets/libs/datatables.net-buttons/js/buttons.print.min.js"></script>
+<script src="{{ asset('') }}assets/libs/datatables.net-keytable/js/dataTables.keyTable.min.js"></script>
+<script src="{{ asset('') }}assets/libs/datatables.net-select/js/dataTables.select.min.js"></script>
+<script src="{{ asset('') }}assets/libs/pdfmake/build/pdfmake.min.js"></script>
+<script src="{{ asset('') }}assets/libs/pdfmake/build/vfs_fonts.js"></script>
+<!-- third party js ends -->
+
+<!-- Datatables init -->
+<script src="{{ asset('') }}assets/js/pages/datatables.init.js"></script>
+
+
+
+<!-- App js -->
+
+
 @endpush

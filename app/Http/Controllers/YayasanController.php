@@ -23,13 +23,30 @@ class YayasanController extends Controller
             ->whereHas('user', function ($query) {
                 $query->where('kategori', 'TK');
             })
+            ->where('status', 0)
             ->count();
 
         $jumlahAbsenPulangtK = AbsenPulang::whereDate('created_at', Carbon::today())
             ->whereHas('user', function ($query) {
                 $query->where('kategori', 'TK');
             })
+            ->where('status', 0)
             ->count();
+
+            $jumlahAbsenMasukTKTolak = AbsenMasuk::whereDate('created_at', Carbon::today())
+            ->whereHas('user', function ($query) {
+                $query->where('kategori', 'TK');
+            })
+            ->where('status', 1)
+            ->count();
+
+           $jumlahAbsenPulangtKTolak = AbsenPulang::whereDate('created_at', Carbon::today())
+            ->whereHas('user', function ($query) {
+                $query->where('kategori', 'TK');
+            })
+            ->where('status', 1)
+            ->count();
+       
 
         $jumlahUserTK = User::where('kategori', 'TK')->count();
 
@@ -37,12 +54,29 @@ class YayasanController extends Controller
         ->whereHas('user', function ($query) {
             $query->where('kategori', 'SD');
         })
+        ->where('status', 0)
         ->count();
 
         $jumlahAbsenPulangSd = AbsenPulang::whereDate('created_at', Carbon::today())
             ->whereHas('user', function ($query) {
                 $query->where('kategori', 'SD');
             })
+            ->where('status', 0)
+            ->count();
+
+       
+            $jumlahAbsenMasukSdTolak = AbsenMasuk::whereDate('created_at', Carbon::today())
+            ->whereHas('user', function ($query) {
+                $query->where('kategori', 'SD');
+            })
+            ->where('status', 1)
+            ->count();
+
+           $jumlahAbsenPulangSdTolak = AbsenPulang::whereDate('created_at', Carbon::today())
+            ->whereHas('user', function ($query) {
+                $query->where('kategori', 'SD');
+            })
+            ->where('status', 1)
             ->count();
 
         $jumlahUserSD = User::where('kategori', 'SD')->count();
@@ -51,12 +85,29 @@ class YayasanController extends Controller
         ->whereHas('user', function ($query) {
             $query->where('kategori', 'SMP');
         })
+        ->where('status', 0)
         ->count();
 
         $jumlahAbsenPulangSmp = AbsenPulang::whereDate('created_at', Carbon::today())
             ->whereHas('user', function ($query) {
                 $query->where('kategori', 'SMP');
             })
+            ->where('status', 0)
+            ->count();
+       
+
+            $jumlahAbsenMasukSmpTolak = AbsenMasuk::whereDate('created_at', Carbon::today())
+            ->whereHas('user', function ($query) {
+                $query->where('kategori', 'SMP');
+            })
+            ->where('status', 1)
+            ->count();
+
+           $jumlahAbsenPulangSmpTolak = AbsenPulang::whereDate('created_at', Carbon::today())
+            ->whereHas('user', function ($query) {
+                $query->where('kategori', 'SMP');
+            })
+            ->where('status', 1)
             ->count();
 
         $jumlahUserSMP = User::where('kategori', 'SMP')->count();
@@ -65,12 +116,28 @@ class YayasanController extends Controller
         ->whereHas('user', function ($query) {
             $query->where('kategori', 'SMA');
         })
+        ->where('status', 0)
         ->count();
 
         $jumlahAbsenPulangSma = AbsenPulang::whereDate('created_at', Carbon::today())
             ->whereHas('user', function ($query) {
                 $query->where('kategori', 'SMA');
             })
+            ->where('status', 0)
+            ->count();
+       
+            $jumlahAbsenMasukSmaTolak = AbsenMasuk::whereDate('created_at', Carbon::today())
+            ->whereHas('user', function ($query) {
+                $query->where('kategori', 'SMA');
+            })
+            ->where('status', 1)
+            ->count();
+
+           $jumlahAbsenPulangSmaTolak = AbsenPulang::whereDate('created_at', Carbon::today())
+            ->whereHas('user', function ($query) {
+                $query->where('kategori', 'SMA');
+            })
+            ->where('status', 1)
             ->count();
 
         $jumlahUserSMA = User::where('kategori', 'SMA')->count();
@@ -84,7 +151,8 @@ class YayasanController extends Controller
 
 
         return view('page.index', compact('jumlahAbsenMasukTK','jumlahAbsenPulangtK','jumlahUserTK','jumlahAbsenMasukSd','jumlahAbsenPulangSd','jumlahUserSD','jumlahAbsenMasukSmp','jumlahAbsenPulangSmp','jumlahUserSMP'
-                                          ,'jumlahAbsenMasukSma','jumlahAbsenPulangSma','jumlahUserSMA','usersHariIni'));
+                                          ,'jumlahAbsenMasukSma','jumlahAbsenPulangSma','jumlahUserSMA','usersHariIni','jumlahAbsenMasukTKTolak','jumlahAbsenPulangtKTolak',
+                                       'jumlahAbsenMasukSdTolak','jumlahAbsenPulangSdTolak','jumlahAbsenMasukSmpTolak','jumlahAbsenPulangSmpTolak','jumlahAbsenMasukSmaTolak','jumlahAbsenPulangSmaTolak'));
     }
 
     /**
