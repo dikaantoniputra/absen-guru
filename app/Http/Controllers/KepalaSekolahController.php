@@ -149,13 +149,16 @@ class KepalaSekolahController extends Controller
         $userId = auth()->user()->id;
         
         // Ambil data absensi berdasarkan kategori pengguna yang sedang login, tetapi tidak termasuk pengguna yang sedang login
-        $usersHariIni = AbsenMasuk::whereHas('user', function ($query) use ($kategori, $userId) {
-            $query->where('kategori', $kategori)
-                  ->where('id', '!=', $userId); // Kondisi untuk mengecualikan pengguna yang sedang login
+        $kategori = auth()->user()->kategori;
+
+        // Ambil data absen masuk berdasarkan kategori pengguna yang sedang login, termasuk pengguna yang sedang login
+        $usersHariIni = AbsenMasuk::whereHas('user', function ($query) use ($kategori) {
+            $query->where('kategori', $kategori);
         })->whereDate('created_at', today()) // Kondisi untuk hanya mengambil data hari ini
           ->get();
         
 
+         
 
         return view('page.index', compact('jumlahAbsenMasukTK','jumlahAbsenPulangtK','jumlahUserTK','jumlahAbsenMasukSd','jumlahAbsenPulangSd','jumlahUserSD','jumlahAbsenMasukSmp','jumlahAbsenPulangSmp','jumlahUserSMP'
                                           ,'jumlahAbsenMasukSma','jumlahAbsenPulangSma','jumlahUserSMA','usersHariIni','jumlahAbsenMasukTKTolak','jumlahAbsenPulangtKTolak',
