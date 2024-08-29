@@ -1,5 +1,14 @@
 @extends('layout.master')
 
+
+
+@push('after-style')
+<link href="{{ asset('') }}assets/libs/datatables.net-bs5/css/dataTables.bootstrap5.min.css" rel="stylesheet" type="text/css" />
+<link href="{{ asset('') }}assets/libs/datatables.net-responsive-bs5/css/responsive.bootstrap5.min.css" rel="stylesheet" type="text/css" />
+<link href="{{ asset('') }}assets/libs/datatables.net-buttons-bs5/css/buttons.bootstrap5.min.css" rel="stylesheet" type="text/css" />
+<link href="{{ asset('') }}assets/libs/datatables.net-select-bs5/css//select.bootstrap5.min.css" rel="stylesheet" type="text/css" />
+@endpush
+
 @section('content')
     @if (auth()->user()->role == 'admin')
         
@@ -284,7 +293,7 @@
         </div><!-- end col -->
 
     </div>
-    
+
     @endif
 
     @if (auth()->user()->role == 'yayasan')
@@ -974,5 +983,28 @@
     <!-- end row -->
 @endsection
 
-@push('after-script')
+<script src="{{ asset('') }}assets/js/pages/datatables.init.js"></script>
+
+
+<script>
+    "use strict";
+$(document).ready(function() {
+    // Initialize DataTable
+    var table = $("#datatable-buttons2").DataTable({
+        lengthChange: false,
+        buttons: ["copy", "excel", "pdf"]
+    });
+
+    // Add buttons to the table
+    table.buttons().container().appendTo("#datatable-buttons2_wrapper .col-md-6:eq(0)");
+
+    // Adjust the appearance of the table length selector
+    $("#datatable-buttons2_length select[name*='datatable_length']").addClass("form-select form-select-sm").removeClass("custom-select custom-select-sm");
+    $(".dataTables_length label").addClass("form-label");
+});
+
+</script>
+<!-- App js -->
+
+
 @endpush
