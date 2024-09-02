@@ -160,7 +160,7 @@ class AdminController extends Controller
        
        
 
-        $jumlahUserYayasan = User::where('kategori', 'YAYASAN')->count();
+        $jumlahUserYayasan = User::where('kategori', 'yayasan')->count();
  
          $hariIni = date('Y-m-d');
  
@@ -173,7 +173,7 @@ class AdminController extends Controller
          return view('page.index', compact('jumlahAbsenMasukTK','jumlahAbsenPulangtK','jumlahUserTK','jumlahAbsenMasukSd','jumlahAbsenPulangSd','jumlahUserSD','jumlahAbsenMasukSmp','jumlahAbsenPulangSmp','jumlahUserSMP'
                                            ,'jumlahAbsenMasukSma','jumlahAbsenPulangSma','jumlahUserSMA','usersHariIni','jumlahAbsenMasukTKTolak','jumlahAbsenPulangtKTolak',
                                         'jumlahAbsenMasukSdTolak','jumlahAbsenPulangSdTolak','jumlahAbsenMasukSmpTolak','jumlahAbsenPulangSmpTolak','jumlahAbsenMasukSmaTolak','jumlahAbsenPulangSmaTolak',
-                                        'jumlahAbsenMasukYayasan','jumlahAbsenPulangYayasan'));
+                                        'jumlahAbsenMasukYayasan','jumlahAbsenPulangYayasan','jumlahUserYayasan'));
      }
      
 

@@ -284,7 +284,7 @@
                    
 
                     <div class="project-members mb-2">
-                        <h5 class="float-start me-3">Total Pegawai : {{ $jumlahUserYayasan }}</h5>
+                        <h5 class="float-start me-3">Total Pegawai : {{ $jumlahUserYayasan ??''}}</h5>
                         
                     </div>
 
