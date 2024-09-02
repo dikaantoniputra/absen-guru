@@ -157,6 +157,7 @@ class KepalaSekolahController extends Controller
         })->whereDate('created_at', today()) // Kondisi untuk hanya mengambil data hari ini
           ->get();
         
+          
 
          
 
