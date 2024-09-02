@@ -250,6 +250,57 @@
             </div>
             
         </div><!-- end col-->
+
+        <div class="col-xl-3">
+            <div class="card">
+                <div class="card-body project-box">
+                    <div class="badge bg-purple float-end">Absen Harian</div>
+                    <h4 class="mt-0"><a href="" class="text-dark">Unit Staf Yayasan</a></h4>
+                    <p class="text-purple text-uppercase font-13">Tgl : {{ date('d-m-Y') }}</p>
+                    <p class="text-muted font-13">Persentasi Kehadiran Dari Unit Yayasan
+                    </p>
+
+                    @php
+                    // Pastikan nilai variabel tidak null dan bukan nol sebelum melakukan pembagian
+                        $jumlahUserYayasan = $jumlahUserYayasan ?? 0;
+                        $jumlahAbsenMasukYayasan = $jumlahAbsenMasukYayasan ?? 0;
+                    
+                        // Hitung persentase kehadiran
+                        $persentaseKehadiran5 = $jumlahUserYayasan > 0 ? ($jumlahAbsenMasukYayasan / $jumlahUserYayasan) * 100 : 0;
+                    @endphp
+                
+                
+                    <ul class="list-inline">
+                        <li class="list-inline-item me-4">
+                            <h4 class="mb-0">{{ $jumlahAbsenMasukYayasan ??'' }}</h4>
+                            <p class="text-muted">Absen Datang</p>
+                        </li>
+                        <li class="list-inline-item">
+                            <h4 class="mb-0">{{ $jumlahAbsenPulangYayasan ??'' }}</h4>
+                            <p class="text-muted">Absen Pulang</p>
+                        </li>
+                    </ul>
+
+                   
+
+                    <div class="project-members mb-2">
+                        <h5 class="float-start me-3">Total Pegawai : {{ $jumlahUserYayasan }}</h5>
+                        
+                    </div>
+
+                    <h5>Progress <span class="text-purple float-end">{{ $persentaseKehadiran5 }}%</span></h5>
+                    <div class="progress progress-bar-alt-purple progress-sm">
+                        <div class="progress-bar bg-purple progress-animated wow animated animated"
+                                role="progressbar" aria-valuenow="{{ $persentaseKehadiran5 }}" aria-valuemin="0" aria-valuemax="100"
+                                style="width: {{ $persentaseKehadiran5 }}%;">
+                        </div><!-- /.progress-bar .progress-bar-danger -->
+                    </div><!-- /.progress .no-rounded -->
+
+                </div>
+            </div>
+            
+        </div><!-- end col-->
+
     </div>
    
 

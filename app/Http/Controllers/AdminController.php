@@ -142,6 +142,25 @@ class AdminController extends Controller
              ->count();
  
          $jumlahUserSMA = User::where('kategori', 'SMA')->count();
+
+        //  yayasan
+        $jumlahAbsenMasukYayasan = AbsenMasuk::whereDate('created_at', Carbon::today())
+        ->whereHas('user', function ($query) {
+            $query->where('kategori', 'YAYASAN');
+        })
+        ->where('status', 0)
+        ->count();
+
+        $jumlahAbsenPulangYayasan = AbsenPulang::whereDate('created_at', Carbon::today())
+            ->whereHas('user', function ($query) {
+                $query->where('kategori', 'YAYASAN');
+            })
+            ->where('status', 0)
+            ->count();
+       
+       
+
+        $jumlahUserYayasan = User::where('kategori', 'YAYASAN')->count();
  
          $hariIni = date('Y-m-d');
  
@@ -153,7 +172,8 @@ class AdminController extends Controller
  
          return view('page.index', compact('jumlahAbsenMasukTK','jumlahAbsenPulangtK','jumlahUserTK','jumlahAbsenMasukSd','jumlahAbsenPulangSd','jumlahUserSD','jumlahAbsenMasukSmp','jumlahAbsenPulangSmp','jumlahUserSMP'
                                            ,'jumlahAbsenMasukSma','jumlahAbsenPulangSma','jumlahUserSMA','usersHariIni','jumlahAbsenMasukTKTolak','jumlahAbsenPulangtKTolak',
-                                        'jumlahAbsenMasukSdTolak','jumlahAbsenPulangSdTolak','jumlahAbsenMasukSmpTolak','jumlahAbsenPulangSmpTolak','jumlahAbsenMasukSmaTolak','jumlahAbsenPulangSmaTolak'));
+                                        'jumlahAbsenMasukSdTolak','jumlahAbsenPulangSdTolak','jumlahAbsenMasukSmpTolak','jumlahAbsenPulangSmpTolak','jumlahAbsenMasukSmaTolak','jumlahAbsenPulangSmaTolak',
+                                        'jumlahAbsenMasukYayasan','jumlahAbsenPulangYayasan'));
      }
      
 
