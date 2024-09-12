@@ -41,11 +41,11 @@
                                     <ol class="breadcrumb m-0">
                                         <li class="breadcrumb-item"><a href="javascript: void(0);">YBPPK PIRNGADI</a>
                                         </li>
-                                        <li class="breadcrumb-item"><a href="javascript: void(0);">Layouts</a></li>
-                                        <li class="breadcrumb-item active">Horizontal Layout</li>
+                                        <li class="breadcrumb-item"><a href="javascript: void(0);">ABSEN</a></li>
+                                        <li class="breadcrumb-item active">TERPADU V1</li>
                                     </ol>
                                 </div>
-                                <h4 class="page-title">Horizontal Layout</h4>
+                                <h4 class="page-title">Absensi YBPPK PIRNGADI</h4>
                             </div>
                         </div>
                     </div>
