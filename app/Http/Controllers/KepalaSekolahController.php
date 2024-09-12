@@ -464,11 +464,11 @@ class KepalaSekolahController extends Controller
     public function laporansma(Request $request)
     {
         $queryMasuk = AbsenMasuk::whereHas('user', function($q) {
-            $q->where('kategori', 'SMP'); // Assuming 'category' is the field for the category
+            $q->where('kategori', 'SMA'); // Assuming 'category' is the field for the category
         });
     
         $queryPulang = AbsenPulang::whereHas('user', function($q) {
-            $q->where('kategori', 'SMP'); // Assuming 'category' is the field for the category
+            $q->where('kategori', 'SMA'); // Assuming 'category' is the field for the category
         });
 
         // Apply date filter if dates are provided
