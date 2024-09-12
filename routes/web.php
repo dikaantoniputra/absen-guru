@@ -96,9 +96,9 @@ Route::group(['middleware' => ['auth']], function () {
         Route::get('/data-kepsek-pulang', [KepalaSekolahController::class, 'pulangkepsek'])->name('pulang.kepsek');
 
         Route::get('laporan-unit-tk', [KepalaSekolahController::class, 'laporanTk'])->name('laporan.tk.kepala');
-        Route::get('laporan-unit-sd', [KepalaSekolahController::class, 'laporanTk'])->name('laporan.sd.kepala');
-        Route::get('laporan-unit-smp', [KepalaSekolahController::class, 'laporanTk'])->name('laporan.smp.kepala');
-        Route::get('laporan-unit-sma', [KepalaSekolahController::class, 'laporanTk'])->name('laporan.sma.kepala');
+        Route::get('laporan-unit-sd', [KepalaSekolahController::class, 'laporansd'])->name('laporan.sd.kepala');
+        Route::get('laporan-unit-smp', [KepalaSekolahController::class, 'laporansmp'])->name('laporan.smp.kepala');
+        Route::get('laporan-unit-sma', [KepalaSekolahController::class, 'lamporansma'])->name('laporan.sma.kepala');
         
     });
 

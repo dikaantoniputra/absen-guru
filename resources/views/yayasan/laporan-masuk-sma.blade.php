@@ -19,7 +19,7 @@
         <div class="card">
             <div class="card-body">
                 <h4 class="mt-0 header-title">Filter Absen</h4>
-                <form action="{{ route('laporan.tk.yayasan') }}" method="GET">
+                <form action="{{ route('laporan.sma.yayasan') }}" method="GET">
                     <div class="row">
                         <div class="col-md-4">
                             <label for="start_date">Tanggal Mulai:</label>
@@ -36,7 +36,7 @@
                     </div>
                     <div class="mt-3">
                         <button type="submit" class="btn btn-primary">Filter</button>
-                        <a href="{{ route('laporan.tk.yayasan') }}" class="btn btn-secondary">Reset Filter</a>
+                        <a href="{{ route('laporan.sma.yayasan') }}" class="btn btn-secondary">Reset Filter</a>
                     </div>
                 </form>
             </div>
