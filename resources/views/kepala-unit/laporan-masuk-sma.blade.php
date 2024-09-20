@@ -57,6 +57,8 @@
                             <tr>
                                 <th>No</th>  
                                 <th>Nama</th>  
+                                <th>Tgl</th>
+                                <th>Bulan</th> 
                                 <th>Jam</th>
                                 <th>Status</th>
                                 <th>Guru</th>
@@ -82,6 +84,8 @@
                                     <td>{{ $loop->iteration }}</td>
                                     <td>{{ $absenMasuk->user->name }}</td>
     
+                                    <td>{{ $dayName }}, Tgl - {{ $absenMasuk->created_at->format('d') }}</td>
+                                    <td>{{ $absenMasuk->created_at->format('M') }}</td>
                                     <td>{{ $absenMasuk->created_at->format('H:i') }}</td>
 
                                     <td>
